@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiSearch } from 'react-icons/fi';
 import accident from '../assets/accident.jpeg'
 import dihImage from '../assets/dih_tix.png'
 import cvip from '../assets/cvip.png'
@@ -13,6 +13,9 @@ import { FaEthereum } from 'react-icons/fa';
 
 const Projects = () => {
   const [expandedId, setExpandedId] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedTag, setSelectedTag] = useState('ALL');
+  const [showAllTags, setShowAllTags] = useState(false);
 
   const projects = [
     {
@@ -139,6 +142,28 @@ const Projects = () => {
 
   ];
 
+  const tagCounts = {};
+  projects.forEach(p => {
+    p.tags.forEach(t => {
+      const tag = t.trim().toUpperCase();
+      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    });
+  });
+  
+  const allTags = Object.entries(tagCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(entry => entry[0]);
+    
+  const visibleTags = showAllTags ? allTags : allTags.slice(0, 5);
+  const hiddenTagsCount = allTags.length > 5 ? allTags.length - 5 : 0;
+
+  const filteredProjects = projects.filter(p => {
+    const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          p.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesTag = selectedTag === 'ALL' || p.tags.some(t => t.trim().toUpperCase() === selectedTag);
+    return matchesSearch && matchesTag;
+  });
+
   const toggleProject = (id) => {
     setExpandedId(expandedId === id ? null : id);
   };
@@ -147,8 +172,50 @@ const Projects = () => {
     <section id="projects" className="pt-20 pb-4">
       <h2 className="text-3xl md:text-5xl font-bold mb-10 font-heading uppercase text-retro-text section-title">Projects ({projects.length})</h2>
 
+      {/* Search & Filter Row */}
+      <div className="mb-8 flex flex-col gap-4">
+        {/* Search Input */}
+        <div className="relative max-w-md">
+          <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-retro-text-secondary" />
+          <input
+            type="text"
+            placeholder="SEARCH THE ARCHIVE..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-retro-surface border border-retro-border text-retro-text placeholder-retro-text-secondary font-mono text-sm py-2 pl-10 pr-4 focus:border-retro-accent outline-none"
+          />
+        </div>
+        
+        {/* Tech Filter Pills */}
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => setSelectedTag('ALL')}
+            className={`px-3 py-1 text-xs font-bold uppercase font-mono transition-colors border ${selectedTag === 'ALL' ? 'bg-retro-accent text-retro-bg border-retro-accent' : 'bg-retro-surface text-retro-text-secondary border-retro-border hover:border-retro-accent'}`}
+          >
+            ALL
+          </button>
+          {visibleTags.map(tag => (
+            <button
+              key={tag}
+              onClick={() => setSelectedTag(tag)}
+              className={`px-3 py-1 text-xs font-bold uppercase font-mono transition-colors border ${selectedTag === tag ? 'bg-retro-accent text-retro-bg border-retro-accent' : 'bg-retro-surface text-retro-text-secondary border-retro-border hover:border-retro-accent'}`}
+            >
+              {tag}
+            </button>
+          ))}
+          {!showAllTags && hiddenTagsCount > 0 && (
+            <button
+              onClick={() => setShowAllTags(true)}
+              className="px-3 py-1 text-xs font-bold uppercase font-mono border border-retro-text-secondary text-retro-text-secondary hover:text-retro-accent hover:border-retro-accent transition-colors"
+            >
+              +{hiddenTagsCount}
+            </button>
+          )}
+        </div>
+      </div>
+
       <div className="flex flex-col gap-4">   
-        {projects.map((project, index) => {
+        {filteredProjects.map((project, index) => {
           const isOpen = expandedId === project.id;
           const num = (index).toString().padStart(2, '0');
 
@@ -193,15 +260,44 @@ const Projects = () => {
                 </div>
 
                 <div className="flex items-center gap-4 self-end md:self-auto md:ml-auto md:pt-2">
+                  {/* Action Icons */}
+                  <div className="flex items-center gap-3 mr-2 md:mr-4 border-r border-retro-border pr-2 md:pr-4">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-retro-text-secondary hover:text-retro-accent transition-colors"
+                      title="Source Code"
+                    >
+                      <FiGithub size={20} />
+                    </a>
+                    {(project.demo && project.demo !== '#' && project.demo !== '') && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-retro-text-secondary hover:text-retro-accent transition-colors"
+                        title="Live Demo"
+                      >
+                        <FiExternalLink size={20} />
+                      </a>
+                    )}
+                  </div>
+
                   <span className="text-xs font-mono text-retro-accent block md:hidden">{isOpen ? 'CLOSE' : 'VIEW'}</span>
-                  <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    className="text-retro-accent"
-                  >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="square" />
-                    </svg>
-                  </motion.div>
+                  <div className="flex items-center gap-2">
+                    <span className="hidden md:block text-xs font-mono text-retro-accent uppercase tracking-wider">{isOpen ? 'COLLAPSE' : 'DETAILS'}</span>
+                    <motion.div
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      className="text-retro-accent"
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="square" />
+                      </svg>
+                    </motion.div>
+                  </div>
                 </div>
               </button>
 
