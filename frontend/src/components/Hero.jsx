@@ -1,198 +1,117 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { SiSupabase, SiPython, SiMongodb, SiGit, SiFlutter, SiFirebase, SiUnrealengine, SiFigma, SiC, SiCplusplus, SiJavascript, SiNodedotjs, SiDocker, SiExpress, SiLinux, SiReact, SiBlender, SiSpotify, SiPeerlist } from 'react-icons/si';
-import { FiGithub, FiLinkedin, FiMail, FiArrowRight } from 'react-icons/fi';
+import { motion } from 'framer-motion';
+import { FiGithub, FiLinkedin, FiArrowRight } from 'react-icons/fi';
 import { FaInstagram, FaXTwitter } from 'react-icons/fa6';
-import heroImage from '../assets/me.jpeg';
+import { SiPeerlist } from 'react-icons/si';
 
 const Hero = ({ onOpenResume }) => {
-  const [showSpotify, setShowSpotify] = useState(false);
-
-  const skills = [
-    { name: 'JAVASCRIPT', icon: SiJavascript, url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
-    { name: 'NODE.JS', icon: SiNodedotjs, url: 'https://nodejs.org' },
-    { name: 'EXPRESS', icon: SiExpress, url: 'https://expressjs.com' },
-    { name: 'MONGODB', icon: SiMongodb, url: 'https://www.mongodb.com' },
-    { name: 'GIT', icon: SiGit, url: 'https://git-scm.com' },
-    { name: 'LINUX', icon: SiLinux, url: 'https://www.linux.org' },
-    { name: 'FLUTTER', icon: SiFlutter, url: 'https://flutter.dev' },
-    { name: 'DOCKER', icon: SiDocker, url: 'https://www.docker.com' },
-    { name: 'SUPABASE', icon: SiSupabase, url: 'https://supabase.com' },
-    { name: 'C++', icon: SiCplusplus, url: 'https://isocpp.org' },
-    { name: 'UNREAL', icon: SiUnrealengine, url: 'https://www.unrealengine.com' },
-    { name: 'BLENDER', icon: SiBlender, url: 'https://www.blender.org' },
-    { name: 'FIGMA', icon: SiFigma, url: 'https://www.figma.com' },
-    { name: 'PYTHON', icon: SiPython, url: 'https://www.python.org' },
-  ];
-
   return (
-    <section id="hero" className="hero relative items-center">
+    <section id="hero" className="w-full pb-12 md:pb-20">
       <motion.div
-        className="hero-content"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <p style={{ color: "var(--accent-retro)", marginBottom: "10px" }} className="font-mono">
-          {"{ HOT RELOADING... }"}
-        </p>
-        <h1 className="leading-tight">
-          BACKEND <br />
-          <span className="text-retro-accent">DEVELOPER</span>
-          & SYSTEM <br />
-          <span className="text-retro-accent">DESIGNER</span>
-        </h1>
-        <p className="font-mono text-sm md:text-base max-w-lg mt-6 text-retro-text-secondary">
-          Creating solutions for real-time problems.
-        </p>
-
-        <div className="flex flex-wrap gap-3 my-8 max-w-lg">
-          {skills.map((skill, index) => (
-            <a key={index} href={skill.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-bold font-mono text-retro-text hover:text-retro-accent uppercase bg-retro-surface px-2 py-1 border border-retro-border hover:-translate-y-1 transition-transform">
-              <skill.icon className="w-3 h-3 text-retro-accent" />
-              {skill.name}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap gap-4 mb-8">
-          <a href="#projects" className="btn-retro uppercase text-sm tracking-wider">
-            EXPLORE PROJECTS
-          </a>
-          <button
-            onClick={onOpenResume}
-            className="btn-retro uppercase text-sm tracking-wider"
-          >
-            RESUME
-          </button>
-        </div>
-
-        {/* FIND ME ONLINE */}
-        <div className="mb-8 w-full max-w-lg">
-          <h3 className="text-xs font-mono text-retro-text-secondary uppercase mb-3 tracking-widest">
-            {">"} FIND ME ONLINE
-          </h3>
-          <div className="flex flex-col gap-2">
-            {[
-              { name: 'GitHub', icon: FiGithub, url: 'https://github.com/dhruv14122004', desc: 'Code & Contributions' },
-              { name: 'LinkedIn', icon: FiLinkedin, url: 'https://www.linkedin.com/in/dhruvsharmaa14/', desc: 'Professional Network' },
-              { name: 'X', icon: FaXTwitter, url: 'https://x.com/dhruvshxrmaa', desc: 'Thoughts & Updates' },
-              { name: 'Instagram', icon: FaInstagram, url: 'https://instagram.com/dhruv14122004', desc: 'Visual Logs' },
-              { name: 'Peerlist', icon: SiPeerlist, url: 'https://peerlist.io/dhruvsharma', desc: 'Proof of Work' }
-            ].map((link, idx) => (
-              <a
-                key={idx}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-between p-3 border border-retro-border bg-retro-surface hover:border-retro-accent transition-colors"
-              >
-                <div className="flex items-center gap-4">
-                  <link.icon className="w-4 h-4 text-retro-text group-hover:text-retro-accent transition-colors" />
-                  <div className="flex flex-col">
-                    <span className="font-mono text-sm font-bold text-retro-text group-hover:text-retro-accent transition-colors uppercase">
-                      {link.name}
-                    </span>
-                    <span className="font-mono text-[10px] text-retro-text-secondary">
-                      {link.desc}
-                    </span>
-                  </div>
-                </div>
-                <FiArrowRight className="w-4 h-4 text-retro-text-secondary group-hover:text-retro-accent group-hover:translate-x-1 transition-all" />
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* AVAILABLE FOR PROJECTS */}
-        <div className="w-full max-w-lg mb-12 md:mb-0">
-          <div className="p-4 border border-retro-border bg-retro-surface flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span className="font-mono text-xs font-bold text-retro-text uppercase">Available for Projects</span>
-              </div>
-              <p className="font-mono text-[10px] text-retro-text-secondary">Looking for backend & system design roles.</p>
-            </div>
-            <a href="mailto:dhruv.sharma122004@gmail.com" className="btn-retro uppercase text-xs tracking-wider whitespace-nowrap text-center py-2 px-4 shadow-[2px_2px_0px_var(--text-primary)] hover:shadow-[1px_1px_0px_var(--text-primary)]">
-              HIRE ME
-            </a>
-          </div>
-        </div>
-
-        {/* Integrated Spotify Player Card - Sleek Version */}
-      </motion.div>
-
-      <motion.div
-        className="window-frame relative hidden md:block"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <div className="window-header">
-          <span>PORTRAIT_01.JPG</span>
-          <div className="window-controls">
-            <button className="window-btn" aria-label="Minimize">
-              <span className="minimize-icon"></span>
-            </button>
-            <button className="window-btn" aria-label="Maximize">
-              <span className="maximize-icon"></span>
-            </button>
-            <button className="window-btn window-close" aria-label="Close">
-              <span className="close-icon"></span>
-            </button>
-          </div>
-        </div>
-        <img
-          src={heroImage}
-          alt="Dhruv Sharma"
-          className="hero-image"
-          style={{ height: '400px', objectFit: 'cover' }}
-        />
-      </motion.div>
-
-      <motion.div
-        className="col-span-1 md:col-span-2 w-full flex justify-center mt-8 relative z-20"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.8 }}
+        transition={{ duration: 0.8 }}
+        className="w-full border-2 border-retro-border bg-[#0a0a0a] flex flex-col shadow-retro"
       >
-        <div className="w-full max-w-[760px] flex flex-col items-center">
-          <button
-            onClick={() => setShowSpotify(!showSpotify)}
-            className="flex items-center gap-2 mb-4 px-6 py-2 bg-retro-surface border border-retro-border hover:border-retro-accent text-retro-text hover:text-retro-accent transition-all uppercase font-bold text-sm tracking-wider"
-          >
-            <SiSpotify size={18} />
-            {showSpotify ? 'Close Playlist' : 'Open Spotify Playlist'}
-            <span className={`transform transition-transform ${showSpotify ? 'rotate-180' : ''}`}>▼</span>
-          </button>
+        {/* Header Block */}
+        <div className="p-6 md:p-8 border-b-2 border-retro-border flex flex-col md:flex-row md:items-end justify-between gap-4 bg-retro-surface">
+          <div>
+            <p className="text-xs font-mono uppercase text-retro-accent mb-2 tracking-widest flex items-center gap-2">
+              HI THERE 👋, I'M
+            </p>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold uppercase leading-none text-retro-text">
+              DHRUV SHARMA
+            </h1>
+          </div>
+          <div className="inline-flex px-3 py-1 bg-retro-text text-retro-bg font-mono text-xs font-bold uppercase tracking-wider shrink-0 w-max">
+            ENGINEER • BUILDER • BACKEND
+          </div>
+        </div>
 
-          <AnimatePresence>
-            {showSpotify && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="w-full overflow-hidden"
-              >
-                <div className="bg-[#18181b] border border-[#333] rounded-xl p-0 overflow-hidden shadow-lg">
-                  <iframe
-                    src="https://open.spotify.com/embed/playlist/7GdFzNqgXgD9YfE8c1waUJ?utm_source=generator&theme=0"
-                    width="100%"
-                    height="380"
-                    frameBorder="0"
-                    allowFullScreen=""
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    style={{ borderRadius: '12px' }}
-                  ></iframe>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+        {/* Two Column Layout */}
+        <div className="flex flex-col lg:flex-row">
+          
+          {/* Left Column: Description */}
+          <div className="lg:w-2/3 p-6 md:p-8 lg:border-r-2 border-retro-border bg-retro-bg">
+            <p className="font-mono text-sm md:text-base text-retro-text-secondary leading-relaxed mb-6">
+              I'm a <strong className="text-retro-text">Backend Developer and System Designer</strong>, open-source contributor, and independent thinker who builds practical products.
+            </p>
+            <div className="pl-4 border-l-2 border-retro-accent mb-6">
+              <p className="font-mono text-sm md:text-base text-retro-text-secondary leading-relaxed">
+                I've worked with various technologies, freelanced, and shipped projects around problems I find meaningful. My work spans backend optimization, database design, API integrations, and cloud deployments.
+              </p>
+            </div>
+            <p className="font-mono text-sm md:text-base text-retro-text-secondary leading-relaxed mb-8">
+              I enjoy making systems faster, simpler, and more useful. I contribute actively to open source, communicate openly, and share honest opinions. I learn quickly, think independently, and care most about solving real problems with people who value good engineering.
+            </p>
+          </div>
+
+          {/* Right Column: Find Me Online */}
+          <div className="lg:w-1/3 p-6 md:p-8 border-t-2 lg:border-t-0 border-retro-border bg-[#111]">
+            <h3 className="text-xs font-mono text-retro-text-secondary uppercase mb-4 tracking-widest">
+              FIND ME ONLINE
+            </h3>
+            <div className="flex flex-col gap-3">
+              {[
+                { name: 'Resume', icon: null, url: '#', desc: 'Experience, skills, and selected work', isResume: true },
+                { name: 'LinkedIn', icon: FiLinkedin, url: 'https://www.linkedin.com/in/dhruvsharmaa14/', desc: 'Professional experience and updates' },
+                { name: 'GitHub', icon: FiGithub, url: 'https://github.com/dhruv14122004', desc: 'Code, open source, and experiments' },
+                { name: 'X', icon: FaXTwitter, url: 'https://x.com/dhruvshxrmaa', desc: 'Thoughts on engineering and current...' },
+                { name: 'Peerlist', icon: SiPeerlist, url: 'https://peerlist.io/dhruvsharma', desc: 'Developer profile and featured projects' }
+              ].map((link, idx) => (
+                <a
+                  key={idx}
+                  href={link.isResume ? '#' : link.url}
+                  onClick={link.isResume ? (e) => { e.preventDefault(); onOpenResume(); } : undefined}
+                  target={link.isResume ? undefined : "_blank"}
+                  rel={link.isResume ? undefined : "noopener noreferrer"}
+                  className="group flex items-center justify-between p-3 md:p-4 border border-retro-border bg-retro-surface hover:border-retro-accent transition-colors"
+                >
+                  <div className="flex items-center gap-4">
+                    {link.icon ? (
+                      <link.icon className="w-5 h-5 text-retro-text group-hover:text-retro-accent transition-colors shrink-0" />
+                    ) : (
+                      <div className="w-5 h-5 border border-retro-text group-hover:border-retro-accent group-hover:text-retro-accent text-retro-text flex items-center justify-center font-mono text-[10px] font-bold transition-colors shrink-0">
+                        📄
+                      </div>
+                    )}
+                    <div className="flex flex-col">
+                      <span className="font-mono text-sm font-bold text-retro-text group-hover:text-retro-accent transition-colors uppercase">
+                        {link.name}
+                      </span>
+                      <span className="font-mono text-[10px] md:text-xs text-retro-text-secondary line-clamp-1">
+                        {link.desc}
+                      </span>
+                    </div>
+                  </div>
+                  <FiArrowRight className="w-4 h-4 text-retro-text-secondary group-hover:text-retro-accent group-hover:translate-x-1 transition-all shrink-0 ml-2" />
+                </a>
+              ))}
+            </div>
+          </div>
+          
+        </div>
+
+        {/* Available For Projects Strip */}
+        <div className="p-6 md:p-8 border-t-2 border-retro-border bg-retro-surface flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="md:w-2/3">
+            <h3 className="text-xs font-mono text-retro-text-secondary uppercase mb-2 tracking-widest">
+              AVAILABLE FOR PROJECTS
+            </h3>
+            <p className="font-mono text-sm text-retro-text">
+              Building something? I help turn ideas into full systems with backend optimization, APIs, and cloud deployments. If you need a partner who ships end to end, let's talk.
+            </p>
+          </div>
+          <a 
+            href="mailto:dhruv.sharma122004@gmail.com" 
+            className="inline-flex items-center gap-3 px-6 py-4 bg-retro-bg border-2 border-retro-border hover:border-retro-accent group transition-colors self-start md:self-auto shrink-0"
+          >
+            <span className="font-mono text-xs font-bold text-retro-text group-hover:text-retro-accent uppercase tracking-wider">
+              dhruv.sharma122004@gmail.com
+            </span>
+            <FiArrowRight className="w-4 h-4 text-retro-text group-hover:text-retro-accent group-hover:-rotate-45 transition-all" />
+          </a>
         </div>
       </motion.div>
-
     </section>
   );
 };

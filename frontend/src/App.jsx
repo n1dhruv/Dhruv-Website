@@ -1,17 +1,13 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import Header from './components/Header'
 import Hero from './components/Hero'
 import TreeTimeline from './components/TreeTimeline'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import ScrollToTop from './components/ScrollToTop'
 import GithubSection from './components/GithubSection'
-import FloatingSocials from './components/FloatingSocials'
 import Loader from './components/Loader'
 import ResumeModal from './components/ResumeModal'
-import KeybindPopup from './components/KeybindPopup'
 import resumePDF from './assets/Dhruv_Sharma_Resume.pdf'
 
 function App() {
@@ -74,17 +70,14 @@ function App() {
         {loading && <Loader key="loader" onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
-      <div className="min-h-screen relative">
-        <Header />
-        <div className="container">
+      <div className="min-h-screen relative pt-12 md:pt-20">
+        <div className="container mx-auto px-4">
           <Hero onOpenResume={() => setShowResume(true)} />
           <TreeTimeline />
           <Projects />
           <GithubSection />
         </div>
         <Footer />
-        <ScrollToTop />
-        {!loading && <FloatingSocials />}
 
         <ResumeModal
           isOpen={showResume}
@@ -92,8 +85,6 @@ function App() {
           file={resumePDF}
           filename="Dhruv Sharma - Resume"
         />
-
-        <KeybindPopup />
       </div>
     </>
   )
