@@ -1,55 +1,53 @@
 import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiArrowRight, FiMail } from 'react-icons/fi';
-import { FaInstagram, FaXTwitter } from 'react-icons/fa6';
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FaXTwitter } from 'react-icons/fa6';
 import { SiPeerlist } from 'react-icons/si';
 
 const Hero = ({ onOpenResume }) => {
   return (
-    <section id="hero" className="w-full pb-16 md:pb-24 pt-8">
+    <section id="hero" className="w-full pb-8 md:pb-12 pt-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="w-full flex flex-col gap-10"
+        className="w-full border-2 border-retro-border bg-retro-surface/50 p-6 md:p-8 flex flex-col gap-6 shadow-retro"
       >
         {/* Name & Title Area */}
-        <div className="flex flex-col gap-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-retro-surface border border-retro-border w-max rounded-full">
+        <div className="flex flex-col gap-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-retro-bg border border-retro-border w-max rounded-full">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-            <span className="text-xs uppercase tracking-wider text-retro-text-secondary font-mono">Available for new opportunities</span>
+            <span className="text-[10px] md:text-xs uppercase tracking-wider text-retro-text-secondary font-mono">Available for new opportunities</span>
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold uppercase leading-tight text-retro-text tracking-tighter">
-            DHRUV <br className="md:hidden" />
-            <span className="text-retro-accent">SHARMA</span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold uppercase leading-tight text-retro-text tracking-tighter">
+            DHRUV <span className="text-retro-accent">SHARMA</span>
           </h1>
-          <h2 className="text-xl md:text-2xl text-retro-text-secondary font-medium tracking-wide">
+          <h2 className="text-lg md:text-xl text-retro-text-secondary font-medium tracking-wide">
             Backend Developer & System Designer
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Description */}
-          <div className="lg:col-span-7 flex flex-col gap-6 text-base md:text-lg text-gray-300 leading-relaxed font-sans">
+          <div className="lg:col-span-7 flex flex-col gap-4 text-sm md:text-base text-gray-300 leading-relaxed font-sans">
             <p>
               I build practical, high-performance products focusing on scalable backend systems and seamless integrations. My work spans backend optimization, database design, and cloud deployments.
             </p>
             <p>
               Currently, I'm working with various technologies to ship projects around problems I find meaningful. I enjoy making systems faster, simpler, and more useful.
             </p>
-            <p>
-              I contribute actively to open source, communicate openly, and learn quickly. I care most about solving real problems with people who value good engineering.
-            </p>
             
-            <div className="flex flex-wrap items-center gap-4 mt-4">
+            <div className="flex flex-wrap items-center gap-4 mt-2">
               <a 
-                href="mailto:dhruv.sharma122004@gmail.com" 
-                className="flex items-center gap-2 bg-retro-accent text-retro-bg px-6 py-3 font-bold hover:bg-white transition-colors uppercase font-mono tracking-wider"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.sharma122004@gmail.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-retro-accent text-retro-bg px-5 py-2.5 font-bold hover:bg-white transition-colors uppercase font-mono tracking-wider text-sm"
               >
                 <FiMail /> LET'S TALK
               </a>
               <button 
                 onClick={onOpenResume}
-                className="flex items-center gap-2 bg-retro-surface border border-retro-border text-retro-text px-6 py-3 font-bold hover:border-retro-accent transition-colors uppercase font-mono tracking-wider"
+                className="flex items-center gap-2 bg-retro-surface border border-retro-border text-retro-text px-5 py-2.5 font-bold hover:border-retro-accent transition-colors uppercase font-mono tracking-wider text-sm"
               >
                 VIEW RESUME
               </button>
@@ -57,11 +55,11 @@ const Hero = ({ onOpenResume }) => {
           </div>
 
           {/* Social Links */}
-          <div className="lg:col-span-5 flex flex-col gap-4">
-            <h3 className="text-sm uppercase tracking-widest text-retro-text-secondary mb-2 font-mono">
+          <div className="lg:col-span-5 flex flex-col gap-3">
+            <h3 className="text-xs uppercase tracking-widest text-retro-text-secondary font-mono">
               Connect
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               {[
                 { name: 'GitHub', icon: FiGithub, url: 'https://github.com/dhruv14122004', desc: 'Code' },
                 { name: 'LinkedIn', icon: FiLinkedin, url: 'https://www.linkedin.com/in/dhruvsharmaa14/', desc: 'Network' },
@@ -73,16 +71,16 @@ const Hero = ({ onOpenResume }) => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col gap-2 p-4 bg-retro-surface border border-retro-border hover:border-retro-accent transition-colors rounded-sm relative overflow-hidden"
+                  className="group flex flex-col gap-1 p-3 bg-retro-bg border border-retro-border hover:border-retro-accent transition-colors rounded-sm relative overflow-hidden"
                 >
-                  <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transform translate-x-2 -translate-y-2 transition-all">
-                    <link.icon className="w-12 h-12" />
+                  <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transform translate-x-1 -translate-y-1 transition-all">
+                    <link.icon className="w-8 h-8" />
                   </div>
-                  <div className="flex items-center gap-3 relative z-10">
-                    <link.icon className="w-5 h-5 text-retro-accent" />
-                    <span className="font-bold text-retro-text font-mono uppercase tracking-wide">{link.name}</span>
+                  <div className="flex items-center gap-2 relative z-10">
+                    <link.icon className="w-4 h-4 text-retro-accent" />
+                    <span className="font-bold text-sm text-retro-text font-mono uppercase tracking-wide">{link.name}</span>
                   </div>
-                  <span className="text-xs text-retro-text-secondary relative z-10 font-sans">{link.desc}</span>
+                  <span className="text-[10px] text-retro-text-secondary relative z-10 font-sans">{link.desc}</span>
                 </a>
               ))}
             </div>
