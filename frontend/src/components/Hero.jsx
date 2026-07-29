@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SiSupabase, SiPython, SiMongodb, SiGit, SiFlutter, SiFirebase, SiUnrealengine, SiFigma, SiC, SiCplusplus, SiJavascript, SiNodedotjs, SiDocker, SiExpress, SiLinux, SiReact, SiBlender, SiSpotify } from 'react-icons/si';
+import { SiSupabase, SiPython, SiMongodb, SiGit, SiFlutter, SiFirebase, SiUnrealengine, SiFigma, SiC, SiCplusplus, SiJavascript, SiNodedotjs, SiDocker, SiExpress, SiLinux, SiReact, SiBlender, SiSpotify, SiPeerlist } from 'react-icons/si';
+import { FiGithub, FiLinkedin, FiMail, FiArrowRight } from 'react-icons/fi';
+import { FaInstagram, FaXTwitter } from 'react-icons/fa6';
 import heroImage from '../assets/me.jpeg';
 
 const Hero = ({ onOpenResume }) => {
@@ -53,7 +55,7 @@ const Hero = ({ onOpenResume }) => {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-4 mb-12 md:mb-0">
+        <div className="flex flex-wrap gap-4 mb-8">
           <a href="#projects" className="btn-retro uppercase text-sm tracking-wider">
             EXPLORE PROJECTS
           </a>
@@ -63,6 +65,59 @@ const Hero = ({ onOpenResume }) => {
           >
             RESUME
           </button>
+        </div>
+
+        {/* FIND ME ONLINE */}
+        <div className="mb-8 w-full max-w-lg">
+          <h3 className="text-xs font-mono text-retro-text-secondary uppercase mb-3 tracking-widest">
+            {">"} FIND ME ONLINE
+          </h3>
+          <div className="flex flex-col gap-2">
+            {[
+              { name: 'GitHub', icon: FiGithub, url: 'https://github.com/dhruv14122004', desc: 'Code & Contributions' },
+              { name: 'LinkedIn', icon: FiLinkedin, url: 'https://www.linkedin.com/in/dhruvsharmaa14/', desc: 'Professional Network' },
+              { name: 'X', icon: FaXTwitter, url: 'https://x.com/dhruvshxrmaa', desc: 'Thoughts & Updates' },
+              { name: 'Instagram', icon: FaInstagram, url: 'https://instagram.com/dhruv14122004', desc: 'Visual Logs' },
+              { name: 'Peerlist', icon: SiPeerlist, url: 'https://peerlist.io/dhruvsharma', desc: 'Proof of Work' }
+            ].map((link, idx) => (
+              <a
+                key={idx}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between p-3 border border-retro-border bg-retro-surface hover:border-retro-accent transition-colors"
+              >
+                <div className="flex items-center gap-4">
+                  <link.icon className="w-4 h-4 text-retro-text group-hover:text-retro-accent transition-colors" />
+                  <div className="flex flex-col">
+                    <span className="font-mono text-sm font-bold text-retro-text group-hover:text-retro-accent transition-colors uppercase">
+                      {link.name}
+                    </span>
+                    <span className="font-mono text-[10px] text-retro-text-secondary">
+                      {link.desc}
+                    </span>
+                  </div>
+                </div>
+                <FiArrowRight className="w-4 h-4 text-retro-text-secondary group-hover:text-retro-accent group-hover:translate-x-1 transition-all" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* AVAILABLE FOR PROJECTS */}
+        <div className="w-full max-w-lg mb-12 md:mb-0">
+          <div className="p-4 border border-retro-border bg-retro-surface flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span className="font-mono text-xs font-bold text-retro-text uppercase">Available for Projects</span>
+              </div>
+              <p className="font-mono text-[10px] text-retro-text-secondary">Looking for backend & system design roles.</p>
+            </div>
+            <a href="mailto:dhruv.sharma122004@gmail.com" className="btn-retro uppercase text-xs tracking-wider whitespace-nowrap text-center py-2 px-4 shadow-[2px_2px_0px_var(--text-primary)] hover:shadow-[1px_1px_0px_var(--text-primary)]">
+              HIRE ME
+            </a>
+          </div>
         </div>
 
         {/* Integrated Spotify Player Card - Sleek Version */}
