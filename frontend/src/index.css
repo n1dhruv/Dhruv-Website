@@ -79,8 +79,6 @@
     color: var(--text-primary) !important;
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
     overflow-x: hidden;
-    background-image: radial-gradient(circle, rgb(51, 51, 51) 1px, transparent 1px);
-    background-size: 30px 30px;
   }
 
 
