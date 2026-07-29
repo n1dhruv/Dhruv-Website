@@ -1,115 +1,92 @@
 import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiArrowRight } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiArrowRight, FiMail } from 'react-icons/fi';
 import { FaInstagram, FaXTwitter } from 'react-icons/fa6';
 import { SiPeerlist } from 'react-icons/si';
 
 const Hero = ({ onOpenResume }) => {
   return (
-    <section id="hero" className="w-full pb-12 md:pb-20">
+    <section id="hero" className="w-full pb-16 md:pb-24 pt-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="w-full border-2 border-retro-border bg-[#0a0a0a] flex flex-col shadow-retro"
+        className="w-full flex flex-col gap-10"
       >
-        {/* Header Block */}
-        <div className="p-6 md:p-8 border-b-2 border-retro-border flex flex-col md:flex-row md:items-end justify-between gap-4 bg-retro-surface">
-          <div>
-            <p className="text-xs font-mono uppercase text-retro-accent mb-2 tracking-widest flex items-center gap-2">
-              HI THERE 👋, I'M
-            </p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold uppercase leading-none text-retro-text">
-              DHRUV SHARMA
-            </h1>
+        {/* Name & Title Area */}
+        <div className="flex flex-col gap-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-retro-surface border border-retro-border w-max rounded-full">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            <span className="text-xs uppercase tracking-wider text-retro-text-secondary font-mono">Available for new opportunities</span>
           </div>
-          <div className="inline-flex px-3 py-1 bg-retro-text text-retro-bg font-mono text-xs font-bold uppercase tracking-wider shrink-0 w-max">
-            ENGINEER • BUILDER • BACKEND
-          </div>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold uppercase leading-tight text-retro-text tracking-tighter">
+            DHRUV <br className="md:hidden" />
+            <span className="text-retro-accent">SHARMA</span>
+          </h1>
+          <h2 className="text-xl md:text-2xl text-retro-text-secondary font-medium tracking-wide">
+            Backend Developer & System Designer
+          </h2>
         </div>
 
-        {/* Two Column Layout */}
-        <div className="flex flex-col lg:flex-row">
-          
-          {/* Left Column: Description */}
-          <div className="lg:w-2/3 p-6 md:p-8 lg:border-r-2 border-retro-border bg-retro-bg">
-            <p className="font-mono text-sm md:text-base text-retro-text-secondary leading-relaxed mb-6">
-              I'm a <strong className="text-retro-text">Backend Developer and System Designer</strong>, open-source contributor, and independent thinker who builds practical products.
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* Main Description */}
+          <div className="lg:col-span-7 flex flex-col gap-6 text-base md:text-lg text-gray-300 leading-relaxed font-sans">
+            <p>
+              I build practical, high-performance products focusing on scalable backend systems and seamless integrations. My work spans backend optimization, database design, and cloud deployments.
             </p>
-            <div className="pl-4 border-l-2 border-retro-accent mb-6">
-              <p className="font-mono text-sm md:text-base text-retro-text-secondary leading-relaxed">
-                I've worked with various technologies, freelanced, and shipped projects around problems I find meaningful. My work spans backend optimization, database design, API integrations, and cloud deployments.
-              </p>
+            <p>
+              Currently, I'm working with various technologies to ship projects around problems I find meaningful. I enjoy making systems faster, simpler, and more useful.
+            </p>
+            <p>
+              I contribute actively to open source, communicate openly, and learn quickly. I care most about solving real problems with people who value good engineering.
+            </p>
+            
+            <div className="flex flex-wrap items-center gap-4 mt-4">
+              <a 
+                href="mailto:dhruv.sharma122004@gmail.com" 
+                className="flex items-center gap-2 bg-retro-accent text-retro-bg px-6 py-3 font-bold hover:bg-white transition-colors uppercase font-mono tracking-wider"
+              >
+                <FiMail /> LET'S TALK
+              </a>
+              <button 
+                onClick={onOpenResume}
+                className="flex items-center gap-2 bg-retro-surface border border-retro-border text-retro-text px-6 py-3 font-bold hover:border-retro-accent transition-colors uppercase font-mono tracking-wider"
+              >
+                VIEW RESUME
+              </button>
             </div>
-            <p className="font-mono text-sm md:text-base text-retro-text-secondary leading-relaxed mb-8">
-              I enjoy making systems faster, simpler, and more useful. I contribute actively to open source, communicate openly, and share honest opinions. I learn quickly, think independently, and care most about solving real problems with people who value good engineering.
-            </p>
           </div>
 
-          {/* Right Column: Find Me Online */}
-          <div className="lg:w-1/3 p-6 md:p-8 border-t-2 lg:border-t-0 border-retro-border bg-[#111]">
-            <h3 className="text-xs font-mono text-retro-text-secondary uppercase mb-4 tracking-widest">
-              FIND ME ONLINE
+          {/* Social Links */}
+          <div className="lg:col-span-5 flex flex-col gap-4">
+            <h3 className="text-sm uppercase tracking-widest text-retro-text-secondary mb-2 font-mono">
+              Connect
             </h3>
-            <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { name: 'Resume', icon: null, url: '#', desc: 'Experience, skills, and selected work', isResume: true },
-                { name: 'LinkedIn', icon: FiLinkedin, url: 'https://www.linkedin.com/in/dhruvsharmaa14/', desc: 'Professional experience and updates' },
-                { name: 'GitHub', icon: FiGithub, url: 'https://github.com/dhruv14122004', desc: 'Code, open source, and experiments' },
-                { name: 'X', icon: FaXTwitter, url: 'https://x.com/dhruvshxrmaa', desc: 'Thoughts on engineering and current...' },
-                { name: 'Peerlist', icon: SiPeerlist, url: 'https://peerlist.io/dhruvsharma', desc: 'Developer profile and featured projects' }
+                { name: 'GitHub', icon: FiGithub, url: 'https://github.com/dhruv14122004', desc: 'Code' },
+                { name: 'LinkedIn', icon: FiLinkedin, url: 'https://www.linkedin.com/in/dhruvsharmaa14/', desc: 'Network' },
+                { name: 'X (Twitter)', icon: FaXTwitter, url: 'https://x.com/dhruvshxrmaa', desc: 'Thoughts' },
+                { name: 'Peerlist', icon: SiPeerlist, url: 'https://peerlist.io/dhruvsharma', desc: 'Profile' }
               ].map((link, idx) => (
                 <a
                   key={idx}
-                  href={link.isResume ? '#' : link.url}
-                  onClick={link.isResume ? (e) => { e.preventDefault(); onOpenResume(); } : undefined}
-                  target={link.isResume ? undefined : "_blank"}
-                  rel={link.isResume ? undefined : "noopener noreferrer"}
-                  className="group flex items-center justify-between p-3 md:p-4 border border-retro-border bg-retro-surface hover:border-retro-accent transition-colors"
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col gap-2 p-4 bg-retro-surface border border-retro-border hover:border-retro-accent transition-colors rounded-sm relative overflow-hidden"
                 >
-                  <div className="flex items-center gap-4">
-                    {link.icon ? (
-                      <link.icon className="w-5 h-5 text-retro-text group-hover:text-retro-accent transition-colors shrink-0" />
-                    ) : (
-                      <div className="w-5 h-5 border border-retro-text group-hover:border-retro-accent group-hover:text-retro-accent text-retro-text flex items-center justify-center font-mono text-[10px] font-bold transition-colors shrink-0">
-                        📄
-                      </div>
-                    )}
-                    <div className="flex flex-col">
-                      <span className="font-mono text-sm font-bold text-retro-text group-hover:text-retro-accent transition-colors uppercase">
-                        {link.name}
-                      </span>
-                      <span className="font-mono text-[10px] md:text-xs text-retro-text-secondary line-clamp-1">
-                        {link.desc}
-                      </span>
-                    </div>
+                  <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transform translate-x-2 -translate-y-2 transition-all">
+                    <link.icon className="w-12 h-12" />
                   </div>
-                  <FiArrowRight className="w-4 h-4 text-retro-text-secondary group-hover:text-retro-accent group-hover:translate-x-1 transition-all shrink-0 ml-2" />
+                  <div className="flex items-center gap-3 relative z-10">
+                    <link.icon className="w-5 h-5 text-retro-accent" />
+                    <span className="font-bold text-retro-text font-mono uppercase tracking-wide">{link.name}</span>
+                  </div>
+                  <span className="text-xs text-retro-text-secondary relative z-10 font-sans">{link.desc}</span>
                 </a>
               ))}
             </div>
           </div>
-          
-        </div>
-
-        {/* Available For Projects Strip */}
-        <div className="p-6 md:p-8 border-t-2 border-retro-border bg-retro-surface flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="md:w-2/3">
-            <h3 className="text-xs font-mono text-retro-text-secondary uppercase mb-2 tracking-widest">
-              AVAILABLE FOR PROJECTS
-            </h3>
-            <p className="font-mono text-sm text-retro-text">
-              Building something? I help turn ideas into full systems with backend optimization, APIs, and cloud deployments. If you need a partner who ships end to end, let's talk.
-            </p>
-          </div>
-          <a 
-            href="mailto:dhruv.sharma122004@gmail.com" 
-            className="inline-flex items-center gap-3 px-6 py-4 bg-retro-bg border-2 border-retro-border hover:border-retro-accent group transition-colors self-start md:self-auto shrink-0"
-          >
-            <span className="font-mono text-xs font-bold text-retro-text group-hover:text-retro-accent uppercase tracking-wider">
-              dhruv.sharma122004@gmail.com
-            </span>
-            <FiArrowRight className="w-4 h-4 text-retro-text group-hover:text-retro-accent group-hover:-rotate-45 transition-all" />
-          </a>
         </div>
       </motion.div>
     </section>
@@ -117,3 +94,4 @@ const Hero = ({ onOpenResume }) => {
 };
 
 export default Hero;
+

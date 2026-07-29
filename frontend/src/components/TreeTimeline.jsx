@@ -89,7 +89,7 @@ const TreeTimeline = () => {
                 <div className="text-sm font-mono text-retro-text-secondary mb-4 uppercase tracking-wider">
                   <span className="text-retro-accent">{exp.company}</span>
                 </div>
-                <p className="text-sm font-mono text-retro-text-secondary leading-relaxed mb-6">
+                <p className="text-sm md:text-base font-sans text-retro-text-secondary leading-relaxed mb-6">
                   {exp.description}
                 </p>
 

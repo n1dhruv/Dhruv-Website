@@ -357,7 +357,7 @@ const Projects = () => {
                     {/* Right Main: Description & Actions */}
                     <div className="md:w-2/3 p-6 md:p-8 flex flex-col bg-[#111]">
                       {/* Description Box */}
-                      <div className="flex-1 mb-8 font-mono text-sm leading-relaxed text-gray-300">
+                      <div className="flex-1 mb-8 font-sans text-base leading-relaxed text-gray-300">
                         <h4 className="font-mono text-xs text-retro-text-secondary mb-3 uppercase tracking-wider">Description:</h4>
                         <p dangerouslySetInnerHTML={{ __html: project.description }} />
                       </div>

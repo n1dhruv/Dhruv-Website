@@ -62,7 +62,7 @@ const GithubSection = () => {
                                     <h4 className="font-heading font-bold text-lg md:text-xl text-retro-text group-hover:text-retro-accent transition-colors uppercase">
                                         {item.owner} / {item.repo}
                                     </h4>
-                                    <p className="font-mono text-sm text-retro-text-secondary mt-1">
+                                    <p className="font-sans text-sm text-retro-text-secondary mt-1">
                                         {item.desc}
                                     </p>
                                 </div>
