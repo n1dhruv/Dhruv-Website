@@ -16,6 +16,7 @@ const Projects = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState('ALL');
   const [showAllTags, setShowAllTags] = useState(false);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   const projects = [
     {
@@ -164,6 +165,8 @@ const Projects = () => {
     return matchesSearch && matchesTag;
   });
 
+  const displayedProjects = showAllProjects ? filteredProjects : filteredProjects.slice(0, 4);
+
   const toggleProject = (id) => {
     setExpandedId(expandedId === id ? null : id);
   };
@@ -215,7 +218,7 @@ const Projects = () => {
       </div>
 
       <div className="flex flex-col gap-4">   
-        {filteredProjects.map((project, index) => {
+        {displayedProjects.map((project, index) => {
           const isOpen = expandedId === project.id;
           const num = (index).toString().padStart(2, '0');
 
@@ -408,6 +411,20 @@ const Projects = () => {
           );
         })}
       </div>
+
+      {filteredProjects.length > 4 && (
+        <button
+          onClick={() => setShowAllProjects(!showAllProjects)}
+          className="w-full py-4 mt-6 border border-retro-border bg-retro-surface hover:border-retro-accent hover:text-retro-accent text-retro-text-secondary transition-colors font-mono font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-2"
+        >
+          {showAllProjects ? "SHOW LESS" : `SHOW MORE (${filteredProjects.length - 4})`}
+          <motion.div
+            animate={{ rotate: showAllProjects ? 180 : 0 }}
+          >
+            ▼
+          </motion.div>
+        </button>
+      )}
     </section>
   );
 };
