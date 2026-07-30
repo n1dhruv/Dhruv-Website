@@ -8,7 +8,7 @@ const experiences = [
     type: 'Internship',
     duration: 'Jan 2026 – Present',
     description:
-      'Building scalable and production-ready backend systems for multiple client projects using Node.js and Express. Developing secure REST APIs, implementing authentication and authorization, optimizing performance, and deploying containerized services on AWS using Docker while following Git-based collaboration workflows.',
+      'Independently designed and built a production-grade e-commerce backend using Node.js, Express.js, TypeScript, and PostgreSQL, architecting 14 interconnected database tables with Sequelize ORM. I implemented JWT authentication with refresh-token rotation, bcrypt-hashed credentials, and role-based access control across three permission tiers with ownership-level checks. I also built a Razorpay payment integration with HMAC-SHA256 verification, automated GST invoicing, and a nine-state order lifecycle supporting refunds — then deployed it across five AWS services with Docker and a GitHub Actions CI/CD pipeline for dev/prod parity.',
 
     tech: ['JavaScript', 'Node.js', 'Express.js', 'AWS', 'Docker', 'Git'],
   },

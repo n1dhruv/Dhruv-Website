@@ -42,12 +42,14 @@ const Hero = ({ onOpenResume }) => {
               >
                 <FiMail /> LET'S TALK
               </a>
-              <button 
-                onClick={onOpenResume}
+              <a 
+                href="https://drive.google.com/file/d/1SdLAOyati9rMjoxcMe5JeqyKrDvkju7q/view?usp=sharing" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-retro-surface border border-retro-border text-retro-text px-5 py-2.5 font-bold hover:border-retro-accent transition-colors uppercase font-mono tracking-wider text-sm"
               >
                 VIEW RESUME
-              </button>
+              </a>
             </div>
           </div>
 
@@ -58,9 +60,9 @@ const Hero = ({ onOpenResume }) => {
             </h3>
             <div className="grid grid-cols-2 gap-3">
               {[
-                { name: 'GitHub', icon: FiGithub, url: 'https://github.com/dhruv14122004', desc: 'Code' },
+                { name: 'GitHub', icon: FiGithub, url: 'https://github.com/n1dhruv', desc: 'Code' },
                 { name: 'LinkedIn', icon: FiLinkedin, url: 'https://www.linkedin.com/in/dhruvsharmaa14/', desc: 'Network' },
-                { name: 'X (Twitter)', icon: FaXTwitter, url: 'https://x.com/dhruvshxrmaa', desc: 'Thoughts' },
+                { name: 'X (Twitter)', icon: FaXTwitter, url: 'https://x.com/nocapdhruv', desc: 'Thoughts' },
                 { name: 'Peerlist', icon: SiPeerlist, url: 'https://peerlist.io/dhruvsharma', desc: 'Profile' }
               ].map((link, idx) => (
                 <a
