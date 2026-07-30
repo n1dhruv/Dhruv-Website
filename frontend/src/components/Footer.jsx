@@ -1,18 +1,34 @@
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FaXTwitter } from 'react-icons/fa6';
+
 const Footer = () => {
-  const year = new Date().getFullYear()
+  const year = new Date().getFullYear();
   return (
-    <footer className="w-full mt-20 relative z-10 border-t-2 border-retro-accent bg-retro-bg">
-      <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-retro-text uppercase tracking-wider">
-        <div className="flex items-center gap-2">
-          <span>DESIGNED & BUILT BY</span>
-          <span className="text-retro-accent font-bold">DHRUV SHARMA</span>
+    <footer className="w-full mt-20 py-8 border-t border-retro-border bg-[#0a0a0a]">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex flex-col md:flex-row items-center gap-2 font-sans text-sm text-retro-text-secondary">
+          <span>&copy; {year} <strong className="text-retro-text font-medium">Dhruv Sharma</strong></span>
+          <span className="hidden md:inline text-retro-border">|</span>
+          <span>Crafted with passion and code.</span>
         </div>
-        <div className="text-retro-text-secondary">
-          © {year}
+        
+        <div className="flex items-center gap-5 text-retro-text-secondary">
+          <a href="https://github.com/dhruv14122004" target="_blank" rel="noopener noreferrer" className="hover:text-retro-accent transition-colors">
+            <FiGithub size={18} />
+          </a>
+          <a href="https://www.linkedin.com/in/dhruvsharmaa14/" target="_blank" rel="noopener noreferrer" className="hover:text-retro-accent transition-colors">
+            <FiLinkedin size={18} />
+          </a>
+          <a href="https://x.com/dhruvshxrmaa" target="_blank" rel="noopener noreferrer" className="hover:text-retro-accent transition-colors">
+            <FaXTwitter size={18} />
+          </a>
+          <a href="mailto:dhruv.sharma122004@gmail.com" className="hover:text-retro-accent transition-colors">
+            <FiMail size={18} />
+          </a>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

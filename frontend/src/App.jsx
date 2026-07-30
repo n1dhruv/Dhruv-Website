@@ -5,7 +5,6 @@ import TreeTimeline from './components/TreeTimeline'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import GithubSection from './components/GithubSection'
 import Loader from './components/Loader'
 import ResumeModal from './components/ResumeModal'
 import resumePDF from './assets/Dhruv_Sharma_Resume.pdf'
@@ -75,7 +74,6 @@ function App() {
           <Hero onOpenResume={() => setShowResume(true)} />
           <TreeTimeline />
           <Projects />
-          <GithubSection />
         </div>
         <Footer />
 
