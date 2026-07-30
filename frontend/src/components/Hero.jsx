@@ -22,7 +22,7 @@ const Hero = ({ onOpenResume }) => {
             DHRUV <span className="text-retro-accent">SHARMA</span>
           </h1>
           <h2 className="text-lg md:text-xl text-retro-text-secondary font-medium tracking-wide">
-            Backend Developer & System Designer
+            AI & Backend Developer
           </h2>
         </div>
 
@@ -30,10 +30,7 @@ const Hero = ({ onOpenResume }) => {
           {/* Main Description */}
           <div className="lg:col-span-7 flex flex-col gap-4 text-sm md:text-base text-gray-300 leading-relaxed font-sans">
             <p>
-              I build practical, high-performance products focusing on scalable backend systems and seamless integrations. My work spans backend optimization, database design, and cloud deployments.
-            </p>
-            <p>
-              Currently, I'm working with various technologies to ship projects around problems I find meaningful. I enjoy making systems faster, simpler, and more useful.
+              I'm a software engineer with a strong foundation in data structures, algorithms, and database systems, passionate about building efficient and scalable solutions to real-world problems. My work spans backend development, system design, and writing clean, maintainable code — with a particular interest in how well-structured data and thoughtful architecture come together to power reliable applications.
             </p>
             
             <div className="flex flex-wrap items-center gap-4 mt-2">

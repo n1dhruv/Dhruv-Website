@@ -65,9 +65,9 @@ function App() {
 
   return (
     <>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {loading && <Loader key="loader" onComplete={() => setLoading(false)} />}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       <div className="min-h-screen relative pt-12 md:pt-20">
         <div className="container mx-auto px-4">

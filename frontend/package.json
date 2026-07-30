@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://dihruv.me",
+  "homepage": "https://imdhruv.tech",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "start": "vite",
-    "predeploy": "npm run build && echo 'dihruv.me' > dist/CNAME",
+    "predeploy": "npm run build && echo 'imdhruv.tech' > dist/CNAME",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

@@ -4,7 +4,7 @@ const experiences = [
   {
     id: 1,
     role: 'Backend Developer',
-    company: 'Aerilon Tech',
+    company: 'Aerilon Tech, JAIPUR',
     type: 'Internship',
     duration: 'Jan 2026 – Present',
     description:
@@ -16,7 +16,7 @@ const experiences = [
   {
     id: 2,
     role: 'Flutter Mobile App Developer Intern',
-    company: 'Dynamicore Strategies',
+    company: 'Dynamicore Strategies, JAIPUR',
     type: 'internship',
     duration: 'May 2025 – August 2025',
     description: 'Built a Flutter Based Fintech App with portfolio tracking and dynamic responsive layouts. Developed portfolio tracking, mutual fund analysis, investment dashboard, AI portfolio analyzer, and real-time financial data visualization with custom responsive widget library.',
@@ -25,7 +25,7 @@ const experiences = [
   {
     id: 3,
     role: 'Software Developer Intern',
-    company: 'Aunwesha Knowledge Technologies',
+    company: 'Aunwesha Knowledge Technologies, KOLKATA',
     type: 'internship',
     duration: 'May 2024 – June 2024',
     description: 'Built an intelligent document search system for AutoCAD and PDF files using OCR and Apache Lucene indexing. Developed a Java-based application with a chatbot interface that enables conversational search across CAD drawings, along with file preview and Excel export for efficient analysis.',
