@@ -37,7 +37,6 @@ const TreeTimeline = () => {
   return (
     <section id="experience" className="py-12 md:py-20 transition-colors duration-500">
       <div className="w-full">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,8 +46,6 @@ const TreeTimeline = () => {
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-4 font-heading uppercase text-retro-text section-title">Experience</h2>
         </motion.div>
-
-        {/* Consolidated Panel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -61,7 +58,6 @@ const TreeTimeline = () => {
               key={exp.id}
               className={`p-6 md:p-8 flex flex-col md:flex-row gap-6 ${index !== experiences.length - 1 ? 'border-b border-retro-border/50' : ''}`}
             >
-              {/* Left Column: Duration & Type Badge */}
               <div className="md:w-1/4 shrink-0 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-4">
                 <div className="inline-block px-3 py-1 border border-retro-text/30 font-mono text-xs font-bold text-retro-text uppercase bg-[#111]">
                   {exp.duration}
@@ -80,8 +76,6 @@ const TreeTimeline = () => {
                   </span>
                 )}
               </div>
-
-              {/* Right Column: Details */}
               <div className="md:w-3/4 flex flex-col">
                 <h3 className="text-xl md:text-2xl font-bold font-heading uppercase text-retro-text mb-1">
                   {exp.role}
@@ -93,7 +87,6 @@ const TreeTimeline = () => {
                   {exp.description}
                 </p>
 
-                {/* Tech Tags */}
                 {exp.tech && (
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {exp.tech.map((tech, i) => (
