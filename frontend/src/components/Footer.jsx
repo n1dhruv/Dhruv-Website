@@ -9,7 +9,6 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center gap-2 font-sans text-sm text-retro-text-secondary">
           <span>&copy; {year} <strong className="text-retro-text font-medium">Dhruv Sharma</strong></span>
           <span className="hidden md:inline text-retro-border">|</span>
-          <span>Crafted with passion and code.</span>
         </div>
         
         <div className="flex items-center gap-5 text-retro-text-secondary">
