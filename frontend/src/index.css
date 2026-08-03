@@ -76,6 +76,11 @@
 
   body {
     background-color: var(--bg-color) !important;
+    background-image: url('./assets/portfolio background 2.gif') !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--text-primary) !important;
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
     overflow-x: hidden;

@@ -28,14 +28,16 @@ const Hero = ({ onOpenResume }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Description */}
-          <div className="lg:col-span-7 flex flex-col gap-4 text-sm md:text-base text-gray-300 leading-relaxed font-sans">
+          <div className="lg:col-span-7 flex flex-col gap-4 text-lg md:text-base text-gray-300 leading-relaxed font-sans">
             <p>
-              I'm a software engineer with a strong foundation in data structures, algorithms, and database systems, passionate about building efficient and scalable solutions to real-world problems. My work spans backend development, system design, and writing clean, maintainable code — with a particular interest in how well-structured data and thoughtful architecture come together to power reliable applications.
+              <b>
+                I'm a software engineer with a strong foundation in data structures, algorithms, and database systems, passionate about building efficient and scalable solutions to real-world problems. My work spans backend development, system design, and writing clean, maintainable code — with a particular interest in how well-structured data and thoughtful architecture come together to power reliable applications.
+              </b>
             </p>
-            
+
             <div className="flex flex-wrap items-center gap-4 mt-2">
-              <a 
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.sharma122004@gmail.com" 
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.sharma122004@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-retro-accent text-retro-bg px-5 py-2.5 font-bold hover:bg-white transition-colors uppercase font-mono tracking-wider text-sm"
