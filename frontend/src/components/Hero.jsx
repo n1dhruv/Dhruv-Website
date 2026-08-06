@@ -33,7 +33,9 @@ const Hero = () => {
           <div className="lg:col-span-7 flex flex-col gap-4 text-lg md:text-base text-gray-300 leading-relaxed font-sans">
             <p>
               <b>
-                I'm a software engineer with a strong foundation in data structures, algorithms, and database systems, passionate about building efficient and scalable solutions to real-world problems. My work spans backend development, system design, and writing clean, maintainable code — with a particular interest in how well-structured data and thoughtful architecture come together to power reliable applications.
+                I am a Backend, AI and Open soucre developer.
+                Love learning new things and building projects that solve real world problems.
+                Always looking for a opportunity to contribute as a developer.
               </b>
             </p>
 
