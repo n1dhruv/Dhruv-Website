@@ -1,9 +1,11 @@
+'use client'
+
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import { FaXTwitter } from 'react-icons/fa6';
 import { SiPeerlist } from 'react-icons/si';
 
-const Hero = ({ onOpenResume }) => {
+const Hero = () => {
   return (
     <section id="hero" className="w-full pb-8 md:pb-12 pt-4">
       <motion.div
@@ -13,7 +15,7 @@ const Hero = ({ onOpenResume }) => {
         className="w-full border-2 border-retro-border bg-retro-surface/50 p-6 md:p-8 flex flex-col gap-6 shadow-retro"
       >
         {/* Name & Title Area */}
-        <div className="flex flex-col gap-3">
+        <header className="flex flex-col gap-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-retro-bg border border-retro-border w-max rounded-full">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
             <span className="text-[10px] md:text-xs uppercase tracking-wider text-retro-text-secondary font-mono">Available for new opportunities</span>
@@ -24,7 +26,7 @@ const Hero = ({ onOpenResume }) => {
           <h2 className="text-lg md:text-xl text-retro-text-secondary font-medium tracking-wide">
             AI & Backend Developer
           </h2>
-        </div>
+        </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Description */}
@@ -56,7 +58,7 @@ const Hero = ({ onOpenResume }) => {
           </div>
 
           {/* Social Links */}
-          <div className="lg:col-span-5 flex flex-col gap-3">
+          <nav aria-label="Social profiles" className="lg:col-span-5 flex flex-col gap-3">
             <h3 className="text-xs uppercase tracking-widest text-retro-text-secondary font-mono">
               Connect
             </h3>
@@ -85,7 +87,7 @@ const Hero = ({ onOpenResume }) => {
                 </a>
               ))}
             </div>
-          </div>
+          </nav>
         </div>
       </motion.div>
     </section>
@@ -93,4 +95,3 @@ const Hero = ({ onOpenResume }) => {
 };
 
 export default Hero;
-

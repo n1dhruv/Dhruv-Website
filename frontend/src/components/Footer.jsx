@@ -12,16 +12,16 @@ const Footer = () => {
         </div>
         
         <div className="flex items-center gap-5 text-retro-text-secondary">
-          <a href="https://github.com/dhruv14122004" target="_blank" rel="noopener noreferrer" className="hover:text-retro-accent transition-colors">
+          <a href="https://github.com/dhruv14122004" target="_blank" rel="noopener noreferrer" aria-label="Dhruv Sharma on GitHub" className="hover:text-retro-accent transition-colors">
             <FiGithub size={18} />
           </a>
-          <a href="https://www.linkedin.com/in/dhruvsharmaa14/" target="_blank" rel="noopener noreferrer" className="hover:text-retro-accent transition-colors">
+          <a href="https://www.linkedin.com/in/dhruvsharmaa14/" target="_blank" rel="noopener noreferrer" aria-label="Dhruv Sharma on LinkedIn" className="hover:text-retro-accent transition-colors">
             <FiLinkedin size={18} />
           </a>
-          <a href="https://x.com/dhruvshxrmaa" target="_blank" rel="noopener noreferrer" className="hover:text-retro-accent transition-colors">
+          <a href="https://x.com/dhruvshxrmaa" target="_blank" rel="noopener noreferrer" aria-label="Dhruv Sharma on X" className="hover:text-retro-accent transition-colors">
             <FaXTwitter size={18} />
           </a>
-          <a href="mailto:dhruv.sharma122004@gmail.com" className="hover:text-retro-accent transition-colors">
+          <a href="mailto:dhruv.sharma122004@gmail.com" aria-label="Email Dhruv Sharma" className="hover:text-retro-accent transition-colors">
             <FiMail size={18} />
           </a>
         </div>

@@ -5,37 +5,24 @@
   "type": "module",
   "homepage": "https://imdhruv.tech",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "start": "vite",
-    "predeploy": "npm run build && echo 'imdhruv.tech' > dist/CNAME",
-    "deploy": "gh-pages -d dist"
+    "dev": "next dev",
+    "build": "next build",
+    "check:static": "node scripts/check-static.mjs",
+    "start": "next dev",
+    "predeploy": "npm run build && echo 'imdhruv.tech' > out/CNAME",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
-    "@react-three/drei": "^9.99.0",
-    "@react-three/fiber": "^8.15.16",
-    "@tabler/icons-react": "^3.36.0",
     "framer-motion": "^12.23.26",
+    "next": "^16.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-icons": "^5.5.0",
-    "react-pdf": "^10.2.0",
-    "three": "^0.160.0"
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.11.1",
-    "@types/react": "^18.3.10",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.11.1",
-    "eslint-plugin-react": "^7.37.0",
-    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
-    "eslint-plugin-react-refresh": "^0.4.12",
     "gh-pages": "^6.3.0",
-    "globals": "^15.9.0",
     "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13",
-    "vite": "^5.4.8"
+    "tailwindcss": "^3.4.13"
   }
 }
