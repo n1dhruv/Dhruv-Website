@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://imdhruv.tech/sitemap.xml
