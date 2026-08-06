@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['"Space Mono"', 'monospace'],
+        'sans': ['"Bricolage Grotesque"', 'sans-serif'],
         'mono': ['"Space Mono"', 'monospace'],
         'heading': ['Syne', 'sans-serif'],
       },

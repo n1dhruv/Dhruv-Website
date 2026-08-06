@@ -37,16 +37,16 @@ const experiences = [
 
 const TreeTimeline = () => {
   return (
-    <section id="experience" className="py-12 md:py-20 transition-colors duration-500">
+    <section id="experience" className="pt-6 md:pt-8 pb-6 md:pb-8 transition-colors duration-500">
       <div className="w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          className="mb-6"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-heading uppercase text-retro-text section-title">Experience</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 font-heading uppercase text-retro-text section-title">Experience</h2>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -61,12 +61,12 @@ const TreeTimeline = () => {
               className={`p-6 md:p-8 flex flex-col md:flex-row gap-6 ${index !== experiences.length - 1 ? 'border-b border-retro-border/50' : ''}`}
             >
               <div className="md:w-1/4 shrink-0 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-4">
-                <div className="inline-block px-3 py-1 border border-retro-text/30 font-mono text-xs font-bold text-retro-text uppercase bg-[#111]">
+                <div className="inline-block px-3 py-1 border border-retro-text/30 font-sans text-xs font-bold text-retro-text uppercase bg-[#111]">
                   {exp.duration}
                 </div>
                 {exp.type && (
                   <span
-                    className={`inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border border-retro-border font-mono text-retro-bg ${
+                    className={`inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border border-retro-border font-sans text-retro-bg ${
                       exp.type.toLowerCase() === 'work'
                         ? 'bg-retro-accent'
                         : exp.type.toLowerCase() === 'internship'
@@ -82,10 +82,10 @@ const TreeTimeline = () => {
                 <h3 className="text-xl md:text-2xl font-bold font-heading uppercase text-retro-text mb-1">
                   {exp.role}
                 </h3>
-                <div className="text-sm font-mono text-retro-text-secondary mb-4 uppercase tracking-wider">
+                <div className="text-sm font-sans text-retro-text-secondary mb-4 uppercase tracking-wider">
                   <span className="text-retro-accent">{exp.company}</span>
                 </div>
-                <p className="text-sm md:text-base font-sans text-retro-text-secondary leading-relaxed mb-6">
+                <p className="text-sm md:text-base font-sans text-white font-medium leading-relaxed mb-6">
                   {exp.description}
                 </p>
 
@@ -94,7 +94,7 @@ const TreeTimeline = () => {
                     {exp.tech.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-2 py-1 text-[10px] md:text-xs font-bold uppercase text-retro-bg bg-retro-text-secondary"
+                        className="px-2.5 py-1 text-[10px] md:text-xs font-bold uppercase text-black bg-white font-sans border border-white"
                       >
                         {tech}
                       </span>

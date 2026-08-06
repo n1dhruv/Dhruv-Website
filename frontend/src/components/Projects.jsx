@@ -40,8 +40,8 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="pt-20 pb-4">
-      <h2 className="text-3xl md:text-5xl font-bold mb-10 font-heading uppercase text-retro-text section-title">Projects ({projects.length})</h2>
+    <section id="projects" className="pt-6 md:pt-8 pb-6 md:pb-8">
+      <h2 className="text-2xl md:text-3xl font-bold mb-6 font-heading uppercase text-retro-text section-title">Projects ({projects.length})</h2>
 
       {/* Search & Filter Row */}
       <div className="mb-8 flex flex-col gap-4">
@@ -55,7 +55,7 @@ const Projects = () => {
             placeholder="SEARCH THE ARCHIVE..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-retro-surface border border-retro-border text-retro-text placeholder-retro-text-secondary font-mono text-sm py-2 pl-10 pr-4 focus:border-retro-accent outline-none"
+            className="w-full bg-retro-surface border border-retro-border text-retro-text placeholder-retro-text-secondary font-sans text-sm py-2 pl-10 pr-4 focus:border-retro-accent outline-none"
           />
         </div>
         
@@ -64,7 +64,7 @@ const Projects = () => {
           <button
             onClick={() => setSelectedTag('ALL')}
             aria-pressed={selectedTag === 'ALL'}
-            className={`px-3 py-1 text-xs font-bold uppercase font-mono transition-colors border ${selectedTag === 'ALL' ? 'bg-retro-accent text-retro-bg border-retro-accent' : 'bg-retro-surface text-retro-text-secondary border-retro-border hover:border-retro-accent'}`}
+            className={`px-3 py-1 text-xs font-bold uppercase font-sans transition-colors border ${selectedTag === 'ALL' ? 'bg-retro-accent text-retro-bg border-retro-accent' : 'bg-retro-surface text-retro-text-secondary border-retro-border hover:border-retro-accent'}`}
           >
             ALL
           </button>
@@ -73,7 +73,7 @@ const Projects = () => {
               key={tag}
               onClick={() => setSelectedTag(tag)}
               aria-pressed={selectedTag === tag}
-              className={`px-3 py-1 text-xs font-bold uppercase font-mono transition-colors border ${selectedTag === tag ? 'bg-retro-accent text-retro-bg border-retro-accent' : 'bg-retro-surface text-retro-text-secondary border-retro-border hover:border-retro-accent'}`}
+              className={`px-3 py-1 text-xs font-bold uppercase font-sans transition-colors border ${selectedTag === tag ? 'bg-retro-accent text-retro-bg border-retro-accent' : 'bg-retro-surface text-retro-text-secondary border-retro-border hover:border-retro-accent'}`}
             >
               {tag}
             </button>
@@ -81,7 +81,7 @@ const Projects = () => {
           {!showAllTags && hiddenTagsCount > 0 && (
             <button
               onClick={() => setShowAllTags(true)}
-              className="px-3 py-1 text-xs font-bold uppercase font-mono border border-retro-text-secondary text-retro-text-secondary hover:text-retro-accent hover:border-retro-accent transition-colors"
+              className="px-3 py-1 text-xs font-bold uppercase font-sans border border-retro-text-secondary text-retro-text-secondary hover:text-retro-accent hover:border-retro-accent transition-colors"
             >
               +{hiddenTagsCount}
             </button>
@@ -114,18 +114,14 @@ const Projects = () => {
                   aria-controls={detailsId}
                   className="flex flex-1 w-full items-start gap-4 md:gap-8 text-left"
                 >
-                  <span className={`text-4xl md:text-5xl font-heading font-extrabold leading-none transition-colors mt-1 w-24 md:w-32 shrink-0 text-right ${isOpen ? 'text-retro-accent' : 'text-retro-text/50 group-hover:text-retro-text'}`}>
-                    {num}/
-                  </span>
-
                   <div className="flex-1 mt-1">
-                    <h3 className={`text-xl md:text-2xl font-heading font-bold uppercase mb-1 transition-colors leading-none ${isOpen ? 'text-retro-text' : 'text-retro-text group-hover:text-retro-accent'}`}>
+                    <h3 className={`text-base md:text-lg font-heading font-bold uppercase mb-1 transition-colors leading-tight ${isOpen ? 'text-retro-text' : 'text-retro-text group-hover:text-retro-accent'}`}>
                       {project.title}
                     </h3>
 
                     <div className="flex flex-wrap gap-2 mt-3">
                       {project.tags.slice(0, 4).map(tag => (
-                        <span key={tag} className={`px-2 py-1 text-[10px] md:text-xs font-bold uppercase text-retro-bg ${isOpen ? 'bg-retro-accent' : 'bg-retro-text-secondary'}`}>
+                        <span key={tag} className={`px-2 py-1 text-[10px] md:text-xs font-bold uppercase ${isOpen ? 'bg-retro-accent text-retro-bg' : 'bg-white text-black font-sans'}`}>
                           {tag}
                         </span>
                       ))}
@@ -169,8 +165,8 @@ const Projects = () => {
                     aria-controls={detailsId}
                     className="flex items-center gap-2 text-retro-accent"
                   >
-                    <span className="text-xs font-mono block md:hidden">{isOpen ? 'CLOSE' : 'VIEW'}</span>
-                    <span className="hidden md:block text-xs font-mono text-retro-accent uppercase tracking-wider">{isOpen ? 'COLLAPSE' : 'DETAILS'}</span>
+                    <span className="text-xs font-sans block md:hidden">{isOpen ? 'CLOSE' : 'VIEW'}</span>
+                    <span className="hidden md:block text-xs font-sans text-retro-accent uppercase tracking-wider">{isOpen ? 'COLLAPSE' : 'DETAILS'}</span>
                     <motion.div
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       className="text-retro-accent"
@@ -209,7 +205,7 @@ const Projects = () => {
 
                     {/* Image Overlay Data */}
                     <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-sm border border-retro-text/30 px-2 py-1 z-20">
-                      <p className="font-mono text-[10px] text-retro-text">IMG_SRC: {project.title.substring(0, 8).toUpperCase()}_V1.0</p>
+                      <p className="font-sans text-[10px] text-retro-text">IMG_SRC: {project.title.substring(0, 8).toUpperCase()}_V1.0</p>
                     </div>
                   </div>
 
@@ -221,19 +217,19 @@ const Projects = () => {
 
                       {/* Year / ID */}
                       <div className="flex items-center justify-between border-b border-retro-text/20 pb-2">
-                        <span className="font-mono text-xs text-retro-text-secondary">ID: {num}</span>
-                        <span className="font-mono text-xs text-retro-text font-bold">{project.year || '2024'}</span>
+                        <span className="font-sans text-xs text-retro-text-secondary">ID: {num}</span>
+                        <span className="font-sans text-xs text-retro-text font-bold">{project.year || '2024'}</span>
                       </div>
 
                       {/* Stack Trace */}
                       <div className="flex-1">
-                        <h4 className="font-mono text-xs text-retro-text-secondary mb-3 uppercase tracking-wider flex items-center gap-2">
+                        <h4 className="font-sans text-xs text-retro-text-secondary mb-3 uppercase tracking-wider flex items-center gap-2">
                           <span className="w-1.5 h-1.5 bg-retro-accent rounded-sm animate-pulse"></span>
                           Stack_Trace
                         </h4>
                         <div className="flex flex-wrap md:flex-col gap-2">
                           {project.tags.map((tag) => (
-                            <div key={tag} className="font-mono text-xs text-retro-text/80 hover:text-retro-accent transition-colors cursor-default border-l border-retro-text/20 pl-2 hover:border-retro-accent hover:pl-3 duration-200">
+                            <div key={tag} className="font-sans text-xs text-retro-text/80 hover:text-retro-accent transition-colors cursor-default border-l border-retro-text/20 pl-2 hover:border-retro-accent hover:pl-3 duration-200">
                               {`> ${tag}`}
                             </div>
                           ))}
@@ -244,8 +240,8 @@ const Projects = () => {
                     {/* Right Main: Description & Actions */}
                     <div className="md:w-2/3 p-6 md:p-8 flex flex-col bg-[#111]">
                       {/* Description Box */}
-                      <div className="flex-1 mb-8 font-sans text-base leading-relaxed text-gray-300">
-                        <h4 className="font-mono text-xs text-retro-text-secondary mb-3 uppercase tracking-wider">Description:</h4>
+                      <div className="flex-1 mb-8 font-sans text-base leading-relaxed text-white font-medium">
+                        <h4 className="font-sans text-xs text-retro-text-secondary mb-3 uppercase tracking-wider">Description:</h4>
                         <p>
                           {project.description}
                           {project.achievement && <> <strong>{project.achievement}</strong></>}
@@ -254,10 +250,10 @@ const Projects = () => {
 
                       {project.features && (
                         <div className="mb-8">
-                          <h4 className="font-mono text-xs text-retro-text-secondary mb-3 uppercase tracking-wider">KEY_FEATURES:</h4>
+                          <h4 className="font-sans text-xs text-retro-text-secondary mb-3 uppercase tracking-wider">KEY_FEATURES:</h4>
                           <ul className="space-y-2">
                             {project.features.map((feature) => (
-                              <li key={feature} className="flex items-start gap-3 text-gray-300">
+                              <li key={feature} className="flex items-start gap-3 text-white font-medium">
                                 <span className="text-retro-accent mt-1">✓</span>
                                 <span className="text-sm">{feature}</span>
                               </li>
@@ -272,7 +268,7 @@ const Projects = () => {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex items-center justify-center gap-3 px-4 py-3 bg-[#0a0a0a] border border-retro-text text-retro-text text-xs font-mono uppercase hover:bg-retro-text hover:text-retro-bg transition-all"
+                          className="group flex items-center justify-center gap-3 px-4 py-3 bg-[#0a0a0a] border border-retro-text text-retro-text text-xs font-sans uppercase hover:bg-retro-text hover:text-retro-bg transition-all"
                         >
                           <FiGithub className="group-hover:rotate-12 transition-transform" />
                           <span>SOURCE CODE</span>
@@ -283,7 +279,7 @@ const Projects = () => {
                             href={project.demo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group flex items-center justify-center gap-3 px-4 py-3 bg-retro-accent/10 border border-retro-accent text-retro-accent text-xs font-mono uppercase hover:bg-retro-accent hover:text-retro-bg transition-all shadow-[4px_4px_0px_rgba(0,0,0,0.5)]"
+                            className="group flex items-center justify-center gap-3 px-4 py-3 bg-retro-accent/10 border border-retro-accent text-retro-accent text-xs font-sans uppercase hover:bg-retro-accent hover:text-retro-bg transition-all shadow-[4px_4px_0px_rgba(0,0,0,0.5)]"
                           >
                             <FiExternalLink className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
                             <span>[ RUN_DEMO ]</span>
@@ -302,7 +298,7 @@ const Projects = () => {
       {filteredProjects.length > 4 && (
         <button
           onClick={() => setShowAllProjects(!showAllProjects)}
-          className="w-full py-4 mt-6 border border-retro-border bg-retro-surface hover:border-retro-accent hover:text-retro-accent text-retro-text-secondary transition-colors font-mono font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-2"
+          className="w-full py-4 mt-6 border border-retro-border bg-retro-surface hover:border-retro-accent hover:text-retro-accent text-retro-text-secondary transition-colors font-sans font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-2"
         >
           {showAllProjects ? "SHOW LESS" : `SHOW MORE (${filteredProjects.length - 4})`}
           <motion.div
