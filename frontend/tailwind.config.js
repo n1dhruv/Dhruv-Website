@@ -8,9 +8,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['"Bricolage Grotesque"', 'sans-serif'],
-        'mono': ['"Space Mono"', 'monospace'],
-        'heading': ['Syne', 'sans-serif'],
+        'sans': ['var(--font-inter)', 'sans-serif'],
+        'mono': ['var(--font-jetbrains-mono)', 'monospace'],
+        'heading': ['var(--font-playfair)', 'serif'],
       },
       colors: {
         background: 'var(--background)',

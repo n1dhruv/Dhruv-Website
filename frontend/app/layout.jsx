@@ -1,3 +1,4 @@
+import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import medianexus from '../src/assets/medianexus.webp'
 import favicon from '../src/assets/favicon.webp'
 import JsonLd from '../src/components/JsonLd'
@@ -5,6 +6,9 @@ import { projects } from '../src/data/projects'
 import { person, SITE_URL } from '../src/data/site'
 import '../src/index.css'
 
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono' })
 const title = 'Dhruv Sharma — AI & Scalable Backend Developer Portfolio'
 const description = 'Dhruv Sharma is an AI and backend developer building scalable web platforms, intelligent systems, and reliable APIs. Explore his projects and experience.'
 
@@ -68,7 +72,7 @@ const structuredData = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`dark ${inter.variable} ${playfair.variable} ${jetbrainsMono.variable}`}>
       <head>
         {/* JSON-LD names the person and projects as entities, not extra pages. */}
         <JsonLd data={structuredData} />
