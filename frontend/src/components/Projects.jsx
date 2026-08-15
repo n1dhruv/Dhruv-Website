@@ -131,6 +131,13 @@ const Projects = () => {
                         </span>
                       )}
                     </div>
+
+                    {/* Project Description Preview */}
+                    <div className={`font-sans text-sm text-retro-text-secondary text-left transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-0 opacity-0 mt-0' : 'max-h-40 opacity-100 mt-4'}`}>
+                      <p className="line-clamp-4 leading-relaxed">
+                        {project.description}
+                      </p>
+                    </div>
                   </div>
                 </button>
 

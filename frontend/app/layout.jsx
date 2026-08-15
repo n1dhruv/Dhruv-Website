@@ -1,5 +1,5 @@
 import medianexus from '../src/assets/medianexus.webp'
-import favicon from '../src/assets/favicon.jpeg'
+import favicon from '../src/assets/favicon.webp'
 import JsonLd from '../src/components/JsonLd'
 import { projects } from '../src/data/projects'
 import { person, SITE_URL } from '../src/data/site'

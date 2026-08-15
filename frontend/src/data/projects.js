@@ -1,4 +1,3 @@
-import accident from '../assets/accident.webp'
 import blogVerse from '../assets/blog-verse.webp'
 import canary from '../assets/canary.webp'
 import cvip from '../assets/cvip.webp'
@@ -6,8 +5,41 @@ import dihImage from '../assets/dih_tix.webp'
 import medianexus from '../assets/medianexus.webp'
 import repocraft from '../assets/repocraft.webp'
 import stonks from '../assets/stonks.webp'
+import makemyresume from '../assets/makemyresume.webp'
 
 export const projects = [
+
+  {
+    id: 'makemyresume',
+    title: 'Make My Resume',
+    description: 'Built an AI-powered resume tailoring platform where users maintain a centralized "Skill Bank" of experiences, projects, and bullet points, then paste in any job description to generate a fully tailored, LaTeX-rendered resume — editable live in-browser.',
+    achievement: 'Self-initiated full-stack platform, live at makemyresume.tech, built with a BYOK (bring-your-own-key) architecture so users control their own inference costs.',
+    image: makemyresume,
+    imageAlt: 'Make My Resume AI resume tailoring platform showing Skill Bank and JD-matched resume generation',
+    tags: [
+      'FastAPI',
+      'Python',
+      'Next.js',
+      'TypeScript',
+      'PostgreSQL',
+      'Supabase',
+      'Pinecone',
+      'LiteLLM',
+      'Redis/ARQ',
+      'LaTeX',
+    ],
+    github: 'https://github.com/n1dhruv/MakeMyResume',
+    year: '2026',
+    demo: 'https://makemyresume-omega.vercel.app/',
+    features: [
+      'Hybrid vector matching engine using Pinecone dense + sparse indexes with a hosted reranker, replacing an earlier hand-maintained keyword list that was producing false-positive skill matches against job descriptions.',
+      'BYOK LLM architecture via LiteLLM — users supply their own provider API key, so resume generation cost is decoupled from the platform rather than billed centrally.',
+      'AI rewriting pipeline with fabrication guardrails, tailoring each Skill Bank bullet to a specific JD while enforcing that content stays grounded in what the user actually did.',
+      'JD parsing pipeline that extracts structured requirements (skills, tools, seniority signals) from a pasted or uploaded job description to drive the matching engine.',
+      'Skill Bank system: a reusable, structured store of experiences/projects/skills so one canonical profile can generate many JD-specific resume variants.',
+      'Full Supabase-based auth and Postgres schema with in-browser LaTeX resume rendering and live editing.',
+    ],
+  },
   {
     id: 'medianexus',
     title: 'MediaNexus',
@@ -131,16 +163,5 @@ export const projects = [
       'Rollback to previous version',
       'Deploy the new version of the application',
     ],
-  },
-  {
-    id: 'accident-detection',
-    title: 'ACCIDENT_DETECTION',
-    description: 'Real-time YOLO detection system taking immediate action on accident identification.',
-    image: accident,
-    imageAlt: 'Road traffic footage analyzed by the YOLO accident detection system',
-    year: '2024',
-    tags: ['IOT', 'PYTHON', 'YOLO'],
-    github: 'https://github.com/dhruv14122004',
-    demo: '#',
-  },
+  }
 ]

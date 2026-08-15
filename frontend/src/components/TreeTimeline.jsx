@@ -16,23 +16,14 @@ const experiences = [
   },
 
   {
-    id: 2,
-    role: 'Flutter Mobile App Developer Intern',
-    company: 'Dynamicore Strategies, JAIPUR',
-    type: 'internship',
-    duration: 'May 2025 – August 2025',
-    description: 'Built a Flutter Based Fintech App with portfolio tracking and dynamic responsive layouts. Developed portfolio tracking, mutual fund analysis, investment dashboard, AI portfolio analyzer, and real-time financial data visualization with custom responsive widget library.',
-    tech: ['Flutter', 'Dart', 'MediaQuery', 'Figma'],
-  },
-  {
-    id: 3,
-    role: 'Software Developer Intern',
-    company: 'Aunwesha Knowledge Technologies, KOLKATA',
-    type: 'internship',
-    duration: 'May 2024 – June 2024',
-    description: 'Built an intelligent document search system for AutoCAD and PDF files using OCR and Apache Lucene indexing. Developed a Java-based application with a chatbot interface that enables conversational search across CAD drawings, along with file preview and Excel export for efficient analysis.',
-    tech: ['Java', 'Java Swing', 'Apache Lucene', 'Apache POI', 'OCR Tools', 'GroupDocs.Viewer'],
-  },
+  "id": 2,
+  "role": "AI/Backend Developer Intern",
+  "company": "Dynamicore Strategies, JAIPUR",
+  "type": "internship",
+  "duration": "May 2025 – August 2025",
+  "description": "Built an Agentic RAG-powered fintech analysis system using LangGraph, integrating portfolio data, financial documents, market APIs, and news to generate context-aware portfolio insights, risk analysis, and investment intelligence.",
+  "tech": ["Python", "LangGraph", "RAG", "LLMs", "Pinecone", "PostgreSQL", "Financial APIs"]
+}
 ];
 
 const TreeTimeline = () => {
