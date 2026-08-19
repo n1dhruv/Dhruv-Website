@@ -1,4 +1,3 @@
-import medianexus from '../src/assets/medianexus.webp'
 import favicon from '../src/assets/favicon.webp'
 import JsonLd from '../src/components/JsonLd'
 import { projects } from '../src/data/projects'
@@ -22,19 +21,12 @@ export const metadata = {
     siteName: `${person.name} Portfolio`,
     title,
     description,
-    images: [{
-      url: medianexus.src,
-      width: 1901,
-      height: 939,
-      alt: 'MediaNexus healthcare platform featured in Dhruv Sharma’s portfolio',
-    }],
   },
   twitter: {
     card: 'summary_large_image',
     title,
     description,
     creator: '@nocapdhruv',
-    images: [medianexus.src],
   },
 }
 
@@ -59,7 +51,6 @@ const structuredData = {
       programmingLanguage: project.tags,
       codeRepository: project.github,
       url: project.demo && project.demo !== '#' ? project.demo : project.github,
-      image: new URL(project.image.src, SITE_URL).toString(),
       author: { '@id': `${SITE_URL}/#person` },
       mainEntityOfPage: `${SITE_URL}/#projects`,
     })),
@@ -73,7 +64,10 @@ export default function RootLayout({ children }) {
         {/* JSON-LD names the person and projects as entities, not extra pages. */}
         <JsonLd data={structuredData} />
       </head>
-      <body>{children}</body>
+      <body>
+        <div className="fixed inset-0 bg-[#060610]/50 backdrop-blur-sm z-[-1] pointer-events-none"></div>
+        {children}
+      </body>
     </html>
   )
 }

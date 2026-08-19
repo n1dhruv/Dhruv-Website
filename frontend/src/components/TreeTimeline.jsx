@@ -28,7 +28,7 @@ const experiences = [
 
 const TreeTimeline = () => {
   return (
-    <section id="experience" className="pt-6 md:pt-8 pb-6 md:pb-8 transition-colors duration-500">
+    <section id="experience" className="w-full transition-colors duration-500">
       <div className="w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,50 +49,40 @@ const TreeTimeline = () => {
           {experiences.map((exp, index) => (
             <div
               key={exp.id}
-              className={`p-6 md:p-8 flex flex-col md:flex-row gap-6 ${index !== experiences.length - 1 ? 'border-b border-retro-border/50' : ''}`}
+              className={`p-6 md:p-8 flex flex-col gap-4 ${index !== experiences.length - 1 ? 'border-b border-retro-border/50' : ''}`}
             >
-              <div className="md:w-1/4 shrink-0 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-4">
-                <div className="inline-block px-3 py-1 border border-retro-text/30 font-sans text-xs font-bold text-retro-text uppercase bg-[#111]">
+              {/* Header: Role/Company on left, Duration on right */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex flex-col">
+                  <h3 className="text-xl md:text-2xl font-bold font-heading uppercase text-retro-text mb-1">
+                    {exp.role}
+                  </h3>
+                  <div className="text-sm font-sans text-retro-text-secondary uppercase tracking-wider">
+                    <span className="text-retro-accent">{exp.company}</span>
+                  </div>
+                </div>
+                
+                <div className="inline-block px-3 py-1 border border-retro-text/30 font-sans text-xs font-bold text-retro-text uppercase bg-[#111] shrink-0 w-fit">
                   {exp.duration}
                 </div>
-                {exp.type && (
-                  <span
-                    className={`inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border border-retro-border font-sans text-retro-bg ${
-                      exp.type.toLowerCase() === 'work'
-                        ? 'bg-retro-accent'
-                        : exp.type.toLowerCase() === 'internship'
-                        ? 'bg-purple-500'
-                        : 'bg-green-600'
-                    }`}
-                  >
-                    {exp.type}
-                  </span>
-                )}
               </div>
-              <div className="md:w-3/4 flex flex-col">
-                <h3 className="text-xl md:text-2xl font-bold font-heading uppercase text-retro-text mb-1">
-                  {exp.role}
-                </h3>
-                <div className="text-sm font-sans text-retro-text-secondary mb-4 uppercase tracking-wider">
-                  <span className="text-retro-accent">{exp.company}</span>
-                </div>
-                <p className="text-sm md:text-base font-sans text-white font-medium leading-relaxed mb-6">
-                  {exp.description}
-                </p>
 
-                {exp.tech && (
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                    {exp.tech.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="px-2.5 py-1 text-[10px] md:text-xs font-bold uppercase text-black bg-white font-sans border border-white"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
+              {/* Description */}
+              <p className="text-sm md:text-base font-sans text-white font-medium leading-relaxed mt-2 mb-2">
+                {exp.description}
+              </p>
+
+              {/* Tech Stack */}
+              {exp.tech && (
+                <div className="mt-2 text-[10px] md:text-xs font-sans font-bold uppercase text-retro-accent tracking-widest leading-loose">
+                  {exp.tech.map((tech, i) => (
+                    <span key={i}>
+                      {tech}
+                      {i !== exp.tech.length - 1 && <span className="mx-2 text-retro-accent/50">•</span>}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </motion.div>

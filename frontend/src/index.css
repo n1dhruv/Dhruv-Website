@@ -28,13 +28,13 @@
   --radius: 0.625rem;
 
   /* Added retro portfolio theme variables */
-  --bg-color: #0d0d0d;
-  --surface: #1a1a1a;
-  --accent-retro: #ff4d00;
+  --bg-color: transparent;
+  --surface: rgba(10, 10, 20, 0.9);
+  --accent-retro: #a1142bd8;
   --text-primary: #ffffff;
-  --text-secondary: #999999;
-  --border-color: #333333;
-  --retro-shadow: 4px 4px 0px #ff4d00;
+  --text-secondary: #ffffff;
+  --border-color: rgba(0, 0, 0, 0);
+  --retro-shadow: 4px 4px 0px #a1142bd8;
 }
 
 .dark {
@@ -251,7 +251,7 @@ header {
 }
 
 .window-close:hover {
-  background: rgba(255, 77, 0, 0.2);
+  background: rgba(0, 243, 255, 0.2);
 }
 
 .hero-image {
@@ -301,7 +301,7 @@ header {
 .section-title {
   font-family: Syne, sans-serif;
   font-size: 3rem;
-  margin-bottom: 50px;
+  margin-bottom: 1.5rem;
   text-transform: uppercase;
   display: flex;
   align-items: center;

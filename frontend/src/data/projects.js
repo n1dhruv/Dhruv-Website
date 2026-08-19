@@ -1,12 +1,3 @@
-import blogVerse from '../assets/blog-verse.webp'
-import canary from '../assets/canary.webp'
-import cvip from '../assets/cvip.webp'
-import dihImage from '../assets/dih_tix.webp'
-import medianexus from '../assets/medianexus.webp'
-import repocraft from '../assets/repocraft.webp'
-import stonks from '../assets/stonks.webp'
-import makemyresume from '../assets/makemyresume.webp'
-
 export const projects = [
 
   {
@@ -14,23 +5,16 @@ export const projects = [
     title: 'Make My Resume',
     description: 'Built an AI-powered resume tailoring platform where users maintain a centralized "Skill Bank" of experiences, projects, and bullet points, then paste in any job description to generate a fully tailored, LaTeX-rendered resume — editable live in-browser.',
     achievement: 'Self-initiated full-stack platform, live at makemyresume.tech, built with a BYOK (bring-your-own-key) architecture so users control their own inference costs.',
-    image: makemyresume,
     imageAlt: 'Make My Resume AI resume tailoring platform showing Skill Bank and JD-matched resume generation',
     tags: [
       'FastAPI',
-      'Python 3.11+ ',
       'Async SQLAlchemy',
       'Redis & ARQ',
-      'Pinecone (Dense + Sparse Vector Search)',
-      'RAG & Reranking',
+      'RAG',
       'LiteLLM',
-      'OpenRouter',
-      'Pydantic Guardrails',
-      'Multi-Tenant Architecture',
-      'AES-GCM Encryption',
-      'Tectonic LaTeX Engine',
+      'Guardrails',
       'PostgreSQL',
-      'Supabase Auth & Storage'
+      'Supabase'
     ],
     github: 'https://github.com/n1dhruv/MakeMyResume',
     year: '2026',
@@ -49,9 +33,8 @@ export const projects = [
     title: 'MediaNexus',
     description: 'Built a multi-role healthcare platform connecting patients, doctors, and hospital admins on a unified system. The platform digitizes the entire hospital workflow — from hospital discovery and appointment booking to AI-assisted prescriptions and medical record sharing.',
     achievement: 'Achieved 1st Runner up place in HackJKLU v5.0 Hackathon for this project.',
-    image: medianexus,
     imageAlt: 'MediaNexus healthcare platform interface for patients, doctors, and hospital administrators',
-    tags: ['Express.js', 'Node.js', 'TypeScript', 'Supabase', 'RAG-Model', 'OpenRouter LLM (arcee-ai/trinity-large-preview)', 'Sarvam AI TTS (bulbul:v3)'],
+    tags: ['Express.js', 'Node.js', 'TypeScript', 'Supabase', 'RAG', 'OpenRouter LLM', 'Sarvam AI TTS'],
     github: 'https://github.com/dhruv14122004/medinexus',
     year: '2026',
     demo: '#',
@@ -69,9 +52,8 @@ export const projects = [
     title: 'Multi-Class Abnormality Classification',
     description: 'Developed Vision Transformer and ResNet based deep learning model for multi-class classification of endoscopy images, focusing on automated gastrointestinal abnormality detection.',
     achievement: 'Ranked 7th in Capsule Vision 2024 Challenge.',
-    image: cvip,
     imageAlt: 'Endoscopy abnormality classification results from the Capsule Vision machine learning project',
-    tags: ['PYTHON', 'ML', 'CNN', 'RESNET', 'VIT', 'MVIT', 'DaVIT', 'CUDA'],
+    tags: ['PYTHON', 'ML', 'CNN', 'RESNET', 'VIT', 'MVIT', 'DaVIT'],
     github: 'https://github.com/dhruv14122004/capsule-commandos',
     year: '2024',
     demo: 'https://arxiv.org/abs/2410.19973',
@@ -85,7 +67,6 @@ export const projects = [
     id: 'dtix',
     title: 'DTIX',
     description: 'Blockchain-based NFT ticketing platform preventing scalping and transparent auctions.',
-    image: dihImage,
     imageAlt: 'DTIX blockchain ticket marketplace interface with event listings',
     year: '2025',
     tags: ['NODEJS', 'EXPRESS', 'MONGODB', 'STRIPE API', 'JWT', 'REACT', 'TAILWIND CSS'],
@@ -101,7 +82,6 @@ export const projects = [
     id: 'canary-deployment',
     title: 'Canary Deployment Without Using Service Mesh',
     description: 'Implemented a Canary Deployment strategy in Kubernetes without using a service mesh by running stable and canary application versions simultaneously. Traffic is distributed based on pod replica ratios using a single Kubernetes Service. Demonstrates practical understanding of Docker, Kubernetes deployments, and zero-downtime release strategies.',
-    image: canary,
     imageAlt: 'Kubernetes canary deployment diagram showing stable and canary application versions',
     year: '2024',
     tags: ['NODEJS', 'EXPRESS', 'Docker', 'Kubernetes', 'MiniKube'],
