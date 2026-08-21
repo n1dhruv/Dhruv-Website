@@ -1,76 +1,153 @@
 'use client'
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiFileText } from 'react-icons/fi';
 import { FaXTwitter } from 'react-icons/fa6';
 import { SiPeerlist } from 'react-icons/si';
-
-import Image from 'next/image';
+import portfolioBg from '../assets/portfolio background 2.gif';
 import portfolioImage from '../assets/portfolio image.jpeg';
 
-const Hero = () => {
-  return (
-    <section id="hero" className="w-full">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="w-full border-2 border-retro-border bg-retro-surface p-6 md:p-8 flex flex-col gap-6 shadow-retro relative"
-      >
-        {/* Name, Title & Image Area */}
-        <div className="flex justify-between items-start md:items-center gap-4 mt-2">
-          <header className="flex flex-col gap-3">
-            <span className="text-xs md:text-sm uppercase tracking-wider text-retro-accent font-sans font-bold">
-              Hello Everyone, I am
-            </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold leading-tight text-retro-text tracking-tighter">
-              Dhruv <span className="text-retro-accent">Sharma</span>
-            </h1>
-          </header>
-          
-          <div className="relative w-24 h-24 md:w-24 md:h-24 shrink-0 border-2 border-retro-accent rounded overflow-hidden shadow-[2px_2px_0px_rgba(255,51,102,0.5)]">
-            <Image 
-              src={portfolioImage} 
-              alt="Dhruv Sharma" 
-              fill 
-              sizes="(max-width: 768px) 80px, 96px"
-              className="object-cover object-center"
-            />
-          </div>
-        </div>
+const socials = [
+  { label: 'GitHub',    icon: FiGithub,   url: 'https://github.com/n1dhruv' },
+  { label: 'LinkedIn',  icon: FiLinkedin,  url: 'https://www.linkedin.com/in/dhruvsharmaa14/' },
+  { label: 'X',         icon: FaXTwitter,  url: 'https://x.com/nocapdhruv' },
+  { label: 'Peerlist',  icon: SiPeerlist,  url: 'https://peerlist.io/dhruvsharma' },
+];
 
-        {/* Description Section */}
-        <div className="flex flex-col gap-4 font-sans text-gray-300 leading-relaxed"> 
-          <p className="text-lg md:text-base font-sans text-white font-medium leading-relaxed">
-            I am a Backend, AI and Open source developer.
-          </p>
-          <p className="text-lg md:text-base font-sans text-white font-medium leading-relaxed">
-            Love learning new things and building projects that solve real world problems.
-            Always looking for an opportunity to contribute as a developer.
-          </p>
-
-          <div className="flex flex-wrap items-center gap-4 mt-2">
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.sharma122004@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-retro-surface border border-retro-border text-retro-text px-5 py-2.5 font-bold hover:border-retro-accent transition-colors uppercase font-sans tracking-wider text-sm"
-            >
-              <FiMail /> LET'S TALK
-            </a>
-            <a 
-              href="https://drive.google.com/file/d/1SdLAOyati9rMjoxcMe5JeqyKrDvkju7q/view?usp=sharing" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-retro-surface border border-retro-border text-retro-text px-5 py-2.5 font-bold hover:border-retro-accent transition-colors uppercase font-sans tracking-wider text-sm"
-            >
-              VIEW RESUME
-            </a>
-          </div>
-        </div>
-      </motion.div>
-    </section>
-  );
+const fadeUp = {
+  hidden:  { opacity: 0, y: 14 },
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.5, ease: 'easeOut' } }),
 };
+
+const Hero = () => (
+  <section id="hero" className="w-full">
+    {/* ── GIF Banner ─────────────────────────────────────────── */}
+    <div className="banner-wrap rounded-none overflow-hidden">
+      <Image
+        src={portfolioBg}
+        alt="Banner"
+        fill={false}
+        width={760}
+        height={220}
+        className="w-full h-full object-cover object-[center_30%]"
+        priority
+        unoptimized
+      />
+    </div>
+
+    {/* ── Profile row ────────────────────────────────────────── */}
+    <div className="panel mt-0 px-6 pt-5 pb-6 flex flex-col gap-5">
+      {/* Name + avatar */}
+      <div className="flex items-start justify-between gap-4">
+        <motion.div
+          className="flex flex-col gap-1"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={0}
+        >
+          <h2 className="display-name">Dhruv Sharma</h2>
+        </motion.div>
+
+        {/* Avatar */}
+        <motion.div
+          className="relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 overflow-hidden"
+          style={{ border: '1px solid rgba(139,124,248,0.25)' }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1, duration: 0.45 }}
+        >
+          <Image
+            src={portfolioImage}
+            alt="Dhruv Sharma"
+            fill
+            sizes="80px"
+            className="object-cover object-center"
+          />
+        </motion.div>
+      </div>
+
+      {/* Bio */}
+      <motion.div
+        className="flex flex-col gap-2 text-sm leading-relaxed"
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+        custom={1}
+      >
+        <p className="text-snow/90">
+          Backend, AI &amp; Open Source developer. I build scalable platforms, intelligent systems,
+          and reliable APIs — always looking for problems worth solving.
+        </p>
+        <ul className="mt-1 space-y-1 text-mist">
+          {[
+            'Currently building at Aerilon Tech & exploring LLM systems.',
+            'Love contributing to open source and learning in public.',
+            'Ranked 7th in Capsule Vision 2024 ML Challenge.',
+          ].map((line) => (
+            <li key={line} className="flex items-start gap-2">
+              <span className="mt-[5px] w-1 h-1 rounded-full bg-lilac shrink-0" />
+              {line}
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+
+      {/* CTA buttons */}
+      <motion.div
+        className="flex flex-wrap gap-3"
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+        custom={2}
+      >
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.sharma122004@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-primary"
+        >
+          <FiMail size={13} />
+          Let&apos;s Talk
+        </a>
+        <a
+          href="https://drive.google.com/file/d/1SdLAOyati9rMjoxcMe5JeqyKrDvkju7q/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-ghost"
+        >
+          <FiFileText size={13} />
+          Resume
+        </a>
+      </motion.div>
+
+      {/* Social chips row */}
+      <motion.div
+        className="flex flex-wrap gap-2 pt-1 border-t"
+        style={{ borderColor: 'var(--line)' }}
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+        custom={3}
+      >
+        <span className="section-label self-center mr-1">Find me</span>
+        {socials.map(({ label, icon: Icon, url }) => (
+          <a
+            key={label}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-chip"
+            aria-label={label}
+          >
+            <Icon size={12} />
+            {label}
+          </a>
+        ))}
+      </motion.div>
+    </div>
+  </section>
+);
 
 export default Hero;

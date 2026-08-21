@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
         <JsonLd data={structuredData} />
       </head>
       <body>
-        <div className="fixed inset-0 bg-[#060610]/50 backdrop-blur-sm z-[-1] pointer-events-none"></div>
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[-1] pointer-events-none"></div>
         {children}
       </body>
     </html>
