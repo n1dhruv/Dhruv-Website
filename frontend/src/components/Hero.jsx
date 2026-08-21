@@ -112,7 +112,7 @@ const Hero = () => (
           Let&apos;s Talk
         </a>
         <a
-          href="https://drive.google.com/file/d/1SdLAOyati9rMjoxcMe5JeqyKrDvkju7q/view?usp=sharing"
+          href="https://drive.google.com/file/d/17rXtDEImYRUqTi6KeXgeS_icrorNOwVv/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="btn-ghost"

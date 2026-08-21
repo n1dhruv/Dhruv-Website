@@ -10,9 +10,9 @@ const Footer = () => {
           <span>&copy; {year} <strong className="text-retro-text font-medium">Dhruv Sharma</strong></span>
           <span className="hidden md:inline text-retro-border">|</span>
         </div>
-        
+
         <div className="flex items-center gap-5 text-retro-text-secondary">
-          <a href="https://github.com/dhruv14122004" target="_blank" rel="noopener noreferrer" aria-label="Dhruv Sharma on GitHub" className="hover:text-retro-accent transition-colors">
+          <a href="https://github.com/n1dhruv" target="_blank" rel="noopener noreferrer" aria-label="Dhruv Sharma on GitHub" className="hover:text-retro-accent transition-colors">
             <FiGithub size={18} />
           </a>
           <a href="https://www.linkedin.com/in/dhruvsharmaa14/" target="_blank" rel="noopener noreferrer" aria-label="Dhruv Sharma on LinkedIn" className="hover:text-retro-accent transition-colors">

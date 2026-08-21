@@ -35,7 +35,7 @@ export const projects = [
     achievement: 'Achieved 1st Runner up place in HackJKLU v5.0 Hackathon for this project.',
     imageAlt: 'MediaNexus healthcare platform interface for patients, doctors, and hospital administrators',
     tags: ['Express.js', 'Node.js', 'TypeScript', 'Supabase', 'RAG', 'OpenRouter LLM', 'Sarvam AI TTS'],
-    github: 'https://github.com/dhruv14122004/medinexus',
+    github: 'https://github.com/n1dhruv/medinexus',
     year: '2026',
     demo: '#',
     features: [
@@ -54,7 +54,7 @@ export const projects = [
     achievement: 'Ranked 7th in Capsule Vision 2024 Challenge.',
     imageAlt: 'Endoscopy abnormality classification results from the Capsule Vision machine learning project',
     tags: ['PYTHON', 'ML', 'CNN', 'RESNET', 'VIT', 'MVIT', 'DaVIT'],
-    github: 'https://github.com/dhruv14122004/capsule-commandos',
+    github: 'https://github.com/n1dhruv/capsule-commandos',
     year: '2024',
     demo: 'https://arxiv.org/abs/2410.19973',
     features: [
@@ -70,7 +70,7 @@ export const projects = [
     imageAlt: 'DTIX blockchain ticket marketplace interface with event listings',
     year: '2025',
     tags: ['NODEJS', 'EXPRESS', 'MONGODB', 'STRIPE API', 'JWT', 'REACT', 'TAILWIND CSS'],
-    github: 'https://github.com/dhruv14122004/Ticket_Booking_app',
+    github: 'https://github.com/n1dhruv/Ticket_Booking_app',
     demo: 'https://ticket-booking-app-c64o.vercel.app/',
     features: [
       'Buy, sell, and resell tickets without intermediaries.',
@@ -85,7 +85,7 @@ export const projects = [
     imageAlt: 'Kubernetes canary deployment diagram showing stable and canary application versions',
     year: '2024',
     tags: ['NODEJS', 'EXPRESS', 'Docker', 'Kubernetes', 'MiniKube'],
-    github: 'https://github.com/dhruv14122004/canary-deployment-without-using-service-mesh',
+    github: 'https://github.com/n1dhruv/canary-deployment-without-using-service-mesh',
     demo: '#',
     features: [
       'Implements canary deployment using native Kubernetes on Minikube without any service mesh',
