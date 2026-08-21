@@ -7,6 +7,7 @@ const sections = [
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'github-activity', label: 'Activity' },
+  { id: 'skills', label: 'Skills' },
 ];
 
 const TableOfContents = () => {
@@ -15,13 +16,15 @@ const TableOfContents = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
+        // We find the entry that is intersecting. If multiple, we take the first one.
+        // Expanding the rootMargin gives a much larger "active zone" in the middle of the screen
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
           }
         });
       },
-      { rootMargin: '-20% 0px -70% 0px' }
+      { rootMargin: '-20% 0px -40% 0px', threshold: 0 }
     );
 
     sections.forEach(({ id }) => {
@@ -36,6 +39,7 @@ const TableOfContents = () => {
 
   const handleClick = (e, id) => {
     e.preventDefault();
+    setActiveId(id); // Instantly highlight when clicked
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
