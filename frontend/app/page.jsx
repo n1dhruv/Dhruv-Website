@@ -1,4 +1,3 @@
-import Footer from '../src/components/Footer'
 import Hero from '../src/components/Hero'
 import KeyboardNavigation from '../src/components/KeyboardNavigation'
 import Projects from '../src/components/Projects'
@@ -21,7 +20,6 @@ export default function Home() {
           <GithubActivity />
         </div>
       </main>
-      <Footer />
     </>
   )
 }
