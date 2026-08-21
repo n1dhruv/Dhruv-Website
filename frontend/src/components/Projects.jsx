@@ -93,6 +93,9 @@ const Projects = () => {
           {filtered.map((project, index) => {
             const isOpen = expandedId === project.id;
             const hasDemo = project.demo && project.demo !== '#' && project.demo !== '';
+            
+            // If total filtered projects is odd, make the last one span both columns
+            const isLastOdd = (filtered.length % 2 !== 0) && (index === filtered.length - 1);
 
             return (
               <motion.article
@@ -102,7 +105,7 @@ const Projects = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.35, delay: index * 0.04 }}
-                className="project-card flex flex-col"
+                className={`project-card flex flex-col ${isLastOdd ? 'sm:col-span-2' : ''}`}
               >
                 {/* Card header — clickable */}
                 <div
