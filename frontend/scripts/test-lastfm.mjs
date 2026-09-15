@@ -1,5 +1,11 @@
 import assert from 'node:assert/strict';
-import { normalizeLastFmTrack, formatRelativeTime, enrichTrackMetadata } from '../src/utils/lastfm.js';
+import {
+  normalizeLastFmTrack,
+  formatRelativeTime,
+  enrichTrackMetadata,
+  resolveArtistArtwork,
+  fetchTopArtists,
+} from '../src/utils/lastfm.js';
 
 console.log('Testing Last.fm utilities...');
 
@@ -123,5 +129,16 @@ const enriched = await enrichTrackMetadata(rawWithoutImage, 'f1f56145603d3db830f
 assert.ok(enriched.image, 'Enriched track must have an artwork image');
 assert.ok(enriched.image.startsWith('http'), 'Artwork image must be a valid URL');
 assert.ok(enriched.album, 'Enriched track must resolve album name');
+
+// 7. Top artists resolution test
+const travisImg = await resolveArtistArtwork('Travis Scott', 'f1f56145603d3db830f4ef1695aa6358');
+assert.ok(travisImg, 'Travis Scott cover photo must be resolved');
+assert.ok(travisImg.startsWith('http'), 'Artist cover photo must be a valid URL');
+
+const topArtistsList = await fetchTopArtists('imdhruv', 'f1f56145603d3db830f4ef1695aa6358', '7day');
+assert.ok(Array.isArray(topArtistsList), 'Top artists must return an array');
+assert.ok(topArtistsList.length > 0, 'Top artists array must not be empty');
+assert.ok(topArtistsList[0].name, 'Top artist must have a name');
+assert.ok(topArtistsList[0].image, 'Top artist must have a cover image');
 
 console.log('✓ All Last.fm utility unit tests passed successfully!');

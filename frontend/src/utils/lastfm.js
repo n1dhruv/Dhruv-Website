@@ -256,3 +256,127 @@ export async function enrichTrackMetadata(track, apiKey, signal) {
 
   return enriched;
 }
+
+/**
+ * Resolves the cover/album artwork for an artist.
+ *
+ * Tries:
+ * 1. Last.fm artist.getTopAlbums (iconic album artwork)
+ * 2. iTunes Search API (clean primary artist search fallback)
+ *
+ * @param {string} artistName
+ * @param {string} apiKey
+ * @param {AbortSignal} [signal]
+ * @returns {Promise<string | null>}
+ */
+export async function resolveArtistArtwork(artistName, apiKey, signal) {
+  if (!artistName) return null;
+
+  // 1. Try Last.fm artist.getTopAlbums
+  if (apiKey) {
+    try {
+      const params = new URLSearchParams({
+        method: 'artist.getTopAlbums',
+        artist: artistName.trim(),
+        api_key: apiKey.trim(),
+        format: 'json',
+        limit: '1',
+      });
+      const res = await fetch(`https://ws.audioscrobbler.com/2.0/?${params.toString()}`, {
+        signal,
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const firstAlbum = data?.topalbums?.album?.[0];
+        if (firstAlbum && Array.isArray(firstAlbum.image)) {
+          const valid = firstAlbum.image
+            .map((img) => (img && typeof img['#text'] === 'string' ? img['#text'].trim() : ''))
+            .filter((url) => url.length > 0 && !url.includes('2a96cbd8b46e442fc41c2b86b821562f'));
+          if (valid.length > 0) {
+            return valid[valid.length - 1];
+          }
+        }
+      }
+    } catch {
+      // Fall through to iTunes
+    }
+  }
+
+  // 2. Try iTunes Search API
+  try {
+    const primary = artistName.split(/[,&]/)[0].replace(/[^\w\s]/gi, ' ').trim();
+    const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(primary)}&entity=album&limit=1`;
+    const res = await fetch(itunesUrl, { signal });
+    if (res.ok) {
+      const data = await res.json();
+      if (data?.results?.[0]?.artworkUrl100) {
+        return data.results[0].artworkUrl100.replace('100x100bb', '300x300bb');
+      }
+    }
+  } catch {
+    // Ignore error
+  }
+
+  return null;
+}
+
+/**
+ * Fetches user's top 5 artists from Last.fm for a specified time period
+ * and enriches each artist with their cover photo.
+ *
+ * @param {string} username
+ * @param {string} apiKey
+ * @param {'7day' | '1month' | '6month' | 'overall'} period
+ * @param {AbortSignal} [signal]
+ * @returns {Promise<Array<{ name: string, playcount: string, rank: number, url: string, image: string | null }>>}
+ */
+export async function fetchTopArtists(username, apiKey, period = '7day', signal) {
+  if (!username || !apiKey) return [];
+
+  try {
+    const params = new URLSearchParams({
+      method: 'user.getTopArtists',
+      user: username.trim(),
+      api_key: apiKey.trim(),
+      format: 'json',
+      limit: '5',
+      period,
+    });
+
+    const res = await fetch(`https://ws.audioscrobbler.com/2.0/?${params.toString()}`, {
+      signal,
+      headers: { Accept: 'application/json' },
+    });
+
+    if (!res.ok) return [];
+
+    const data = await res.json();
+    const rawList = data?.topartists?.artist;
+    if (!rawList) return [];
+
+    const list = Array.isArray(rawList) ? rawList.slice(0, 5) : [rawList];
+
+    // Resolve artworks concurrently in parallel
+    const resolved = await Promise.all(
+      list.map(async (item, idx) => {
+        const name = item.name || '';
+        const playcount = item.playcount || '0';
+        const rank = item['@attr']?.rank || idx + 1;
+        const url = item.url || `https://www.last.fm/music/${encodeURIComponent(name)}`;
+        const image = await resolveArtistArtwork(name, apiKey, signal);
+        return {
+          name,
+          playcount,
+          rank: Number(rank),
+          url,
+          image,
+        };
+      })
+    );
+
+    return resolved;
+  } catch {
+    return [];
+  }
+}
