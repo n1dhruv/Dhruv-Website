@@ -12,10 +12,6 @@ const PERIOD_OPTIONS = [
   { key: 'overall', label: 'ALL' },
 ];
 
-/**
- * Top 5 Artists component displaying artists in horizontal cover photo cards
- * with time-range toggle (7D, 1M, 6M, ALL) and high-res cover artwork.
- */
 const TopArtists = () => {
   const { period, setPeriod, artists, isLoading, isConfigured } = useTopArtists('7day');
   const [imgErrors, setImgErrors] = useState({});
@@ -33,7 +29,7 @@ const TopArtists = () => {
       {/* Header row: Label + Period selector */}
       <div className="flex items-center justify-between flex-wrap gap-2 pb-2 border-b border-line">
         <div className="flex items-center gap-2">
-          <span className="section-label">ROTATION // TOP ARTISTS</span>
+          <span className="section-label">// TOP ARTISTS</span>
         </div>
 
         {/* 7D | 1M | 6M | ALL Filter Pills */}
