@@ -11,6 +11,7 @@ const sections = [
   { id: 'github-activity', number: '05', label: 'Activity', code: 'ACT' },
   { id: 'skills', number: '06', label: 'Skills', code: 'SKL' },
   { id: 'setup', number: '07', label: 'Setup', code: 'SET' },
+  { id: 'music', number: '08', label: 'Music', code: 'MSC' },
 ];
 
 const TableOfContents = () => {

@@ -121,24 +121,37 @@ const MusicStatus = () => {
     : `LAST PLAYED${relativeTime ? ` · ${relativeTime.toUpperCase()}` : ''}`;
 
   return (
-    <section id="audio-status" className="w-full flex flex-col gap-6">
-      {/* Live / Recent Track Status Card */}
-      {isLoading ? (
-        <MusicSkeleton />
-      ) : track ? (
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
-        >
-          <a
-            href={track.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="panel p-4 sm:p-5 group block w-full hover:border-lilac/30 transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-lilac"
-            aria-label={`${isPlaying ? 'Now playing' : 'Last played'}: ${track.name} by ${track.artist} on Last.fm`}
+    <section id="music" className="w-full">
+      {/* Section Heading */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.45 }}
+        className="flex items-center gap-3 mb-5"
+      >
+        <span className="section-label">08 /</span>
+        <h2 className="section-title">Music</h2>
+      </motion.div>
+
+      <div className="w-full flex flex-col gap-5">
+        {/* Live / Recent Track Status Card */}
+        {isLoading ? (
+          <MusicSkeleton />
+        ) : track ? (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45 }}
           >
+            <a
+              href={track.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="panel p-4 sm:p-5 group block w-full hover:border-lilac/30 transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-lilac"
+              aria-label={`${isPlaying ? 'Now playing' : 'Last played'}: ${track.name} by ${track.artist} on Last.fm`}
+            >
             {/* Top bar: Section tag + Live status */}
             <div className="flex items-center justify-between pb-3 border-b border-line">
               <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-mist">
@@ -231,6 +244,7 @@ const MusicStatus = () => {
       >
         <TopStats />
       </motion.div>
+      </div>
     </section>
   );
 };
