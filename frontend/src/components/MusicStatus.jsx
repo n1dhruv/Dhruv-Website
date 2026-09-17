@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { FiMusic, FiDisc, FiArrowUpRight } from 'react-icons/fi';
 import { useLastFmTrack } from '../hooks/useLastFmTrack';
 import { formatRelativeTime } from '../utils/lastfm';
-import TopArtists from './TopArtists';
+import TopStats from './TopStats';
 
 /**
  * CSS-only waveform animation for active playback.
@@ -222,14 +222,14 @@ const MusicStatus = () => {
         </motion.div>
       ) : null}
 
-      {/* Top 5 Artists with 7D / 1M / 6M / ALL Filter */}
+      {/* Top 5 Artists (Left) & Top 5 Tracks (Right) with 7D / 1M / 6M / ALL Filter */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.45, delay: 0.08 }}
       >
-        <TopArtists />
+        <TopStats />
       </motion.div>
     </section>
   );

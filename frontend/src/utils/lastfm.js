@@ -404,14 +404,13 @@ export async function resolveArtistArtwork(artistName, apiKey, signal) {
 }
 
 /**
- * Fetches user's top 5 artists from Last.fm for a specified time period
- * and enriches each artist with their cover photo.
+ * Fetches user's top 5 artists from Last.fm for a specified time period.
  *
  * @param {string} username
  * @param {string} apiKey
  * @param {'7day' | '1month' | '6month' | 'overall'} period
  * @param {AbortSignal} [signal]
- * @returns {Promise<Array<{ name: string, playcount: string, rank: number, url: string, image: string | null }>>}
+ * @returns {Promise<Array<{ name: string, playcount: string, rank: number, url: string }>>}
  */
 export async function fetchTopArtists(username, apiKey, period = '7day', signal) {
   if (!username || !apiKey) return [];
@@ -439,25 +438,80 @@ export async function fetchTopArtists(username, apiKey, period = '7day', signal)
 
     const list = Array.isArray(rawList) ? rawList.slice(0, 5) : [rawList];
 
-    // Resolve artworks concurrently in parallel
-    const resolved = await Promise.all(
-      list.map(async (item, idx) => {
-        const name = item.name || '';
-        const playcount = item.playcount || '0';
-        const rank = item['@attr']?.rank || idx + 1;
-        const url = item.url || `https://www.last.fm/music/${encodeURIComponent(name)}`;
-        const image = await resolveArtistArtwork(name, apiKey, signal);
-        return {
-          name,
-          playcount,
-          rank: Number(rank),
-          url,
-          image,
-        };
-      })
-    );
+    return list.map((item, idx) => {
+      const name = typeof item.name === 'string' ? item.name.trim() : '';
+      const playcount = String(item.playcount || '0');
+      const rank = Number(item['@attr']?.rank || idx + 1);
+      const url = typeof item.url === 'string' && item.url.trim() !== ''
+        ? item.url.trim()
+        : `https://www.last.fm/music/${encodeURIComponent(name)}`;
 
-    return resolved;
+      return {
+        name,
+        playcount,
+        rank,
+        url,
+      };
+    });
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Fetches user's top 5 tracks from Last.fm for a specified time period.
+ *
+ * @param {string} username
+ * @param {string} apiKey
+ * @param {'7day' | '1month' | '6month' | 'overall'} period
+ * @param {AbortSignal} [signal]
+ * @returns {Promise<Array<{ name: string, artist: string, playcount: string, rank: number, url: string }>>}
+ */
+export async function fetchTopTracks(username, apiKey, period = '7day', signal) {
+  if (!username || !apiKey) return [];
+
+  try {
+    const params = new URLSearchParams({
+      method: 'user.getTopTracks',
+      user: username.trim(),
+      api_key: apiKey.trim(),
+      format: 'json',
+      limit: '5',
+      period,
+    });
+
+    const res = await fetch(`https://ws.audioscrobbler.com/2.0/?${params.toString()}`, {
+      signal,
+      headers: { Accept: 'application/json' },
+    });
+
+    if (!res.ok) return [];
+
+    const data = await res.json();
+    const rawList = data?.toptracks?.track;
+    if (!rawList) return [];
+
+    const list = Array.isArray(rawList) ? rawList.slice(0, 5) : [rawList];
+
+    return list.map((item, idx) => {
+      const name = typeof item.name === 'string' ? item.name.trim() : '';
+      const artist = typeof item.artist === 'string'
+        ? item.artist.trim()
+        : (item.artist?.name || item.artist?.['#text'] || '').trim();
+      const playcount = String(item.playcount || '0');
+      const rank = Number(item['@attr']?.rank || idx + 1);
+      const url = typeof item.url === 'string' && item.url.trim() !== ''
+        ? item.url.trim()
+        : `https://www.last.fm/music/${encodeURIComponent(artist)}/_/${encodeURIComponent(name)}`;
+
+      return {
+        name,
+        artist,
+        playcount,
+        rank,
+        url,
+      };
+    });
   } catch {
     return [];
   }

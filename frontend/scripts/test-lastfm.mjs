@@ -3,8 +3,8 @@ import {
   normalizeLastFmTrack,
   formatRelativeTime,
   enrichTrackMetadata,
-  resolveArtistArtwork,
   fetchTopArtists,
+  fetchTopTracks,
 } from '../src/utils/lastfm.js';
 
 console.log('Testing Last.fm utilities...');
@@ -130,15 +130,21 @@ assert.ok(enriched.image, 'Enriched track must have an artwork image');
 assert.ok(enriched.image.startsWith('http'), 'Artwork image must be a valid URL');
 assert.ok(enriched.album, 'Enriched track must resolve album name');
 
-// 7. Top artists resolution test
-const travisImg = await resolveArtistArtwork('Travis Scott', 'f1f56145603d3db830f4ef1695aa6358');
-assert.ok(travisImg, 'Travis Scott cover photo must be resolved');
-assert.ok(travisImg.startsWith('http'), 'Artist cover photo must be a valid URL');
-
+// 7. Top artists resolution test (text only, numbered ranking)
 const topArtistsList = await fetchTopArtists('imdhruv', 'f1f56145603d3db830f4ef1695aa6358', '7day');
 assert.ok(Array.isArray(topArtistsList), 'Top artists must return an array');
 assert.ok(topArtistsList.length > 0, 'Top artists array must not be empty');
 assert.ok(topArtistsList[0].name, 'Top artist must have a name');
-assert.ok(topArtistsList[0].image, 'Top artist must have a cover image');
+assert.ok(topArtistsList[0].rank, 'Top artist must have a rank');
+assert.ok(topArtistsList[0].playcount !== undefined, 'Top artist must have playcount');
+
+// 8. Top tracks resolution test
+const topTracksList = await fetchTopTracks('imdhruv', 'f1f56145603d3db830f4ef1695aa6358', '7day');
+assert.ok(Array.isArray(topTracksList), 'Top tracks must return an array');
+assert.ok(topTracksList.length > 0, 'Top tracks array must not be empty');
+assert.ok(topTracksList[0].name, 'Top track must have a name');
+assert.ok(topTracksList[0].artist, 'Top track must have an artist');
+assert.ok(topTracksList[0].rank, 'Top track must have a rank');
+assert.ok(topTracksList[0].playcount !== undefined, 'Top track must have playcount');
 
 console.log('✓ All Last.fm utility unit tests passed successfully!');

@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { fetchTopArtists } from '../utils/lastfm';
+import { fetchTopArtists, fetchTopTracks } from '../utils/lastfm';
 
 /**
- * Custom hook to fetch user's top 5 artists across selectable time periods:
+ * Custom hook to fetch user's top 5 artists and top 5 tracks across selectable time periods:
  * - '7day' (7D)
  * - '1month' (1M)
  * - '6month' (6M)
@@ -12,9 +12,10 @@ import { fetchTopArtists } from '../utils/lastfm';
  *
  * Implements client-side in-memory caching to ensure instant switching between periods.
  */
-export function useTopArtists(initialPeriod = '7day') {
+export function useTopStats(initialPeriod = '7day') {
   const [period, setPeriod] = useState(initialPeriod);
   const [artists, setArtists] = useState([]);
+  const [tracks, setTracks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -24,7 +25,7 @@ export function useTopArtists(initialPeriod = '7day') {
   const cacheRef = useRef({});
   const abortControllerRef = useRef(null);
 
-  const loadArtists = useCallback(
+  const loadStats = useCallback(
     async (targetPeriod) => {
       if (!username || !apiKey) {
         setIsLoading(false);
@@ -34,7 +35,8 @@ export function useTopArtists(initialPeriod = '7day') {
 
       // Return instantly from cache if previously loaded
       if (cacheRef.current[targetPeriod]) {
-        setArtists(cacheRef.current[targetPeriod]);
+        setArtists(cacheRef.current[targetPeriod].artists);
+        setTracks(cacheRef.current[targetPeriod].tracks);
         setIsLoading(false);
         return;
       }
@@ -49,19 +51,32 @@ export function useTopArtists(initialPeriod = '7day') {
       setError(null);
 
       try {
-        const results = await fetchTopArtists(
-          username,
-          apiKey,
-          targetPeriod,
-          abortControllerRef.current.signal
-        );
+        const [resolvedArtists, resolvedTracks] = await Promise.all([
+          fetchTopArtists(
+            username,
+            apiKey,
+            targetPeriod,
+            abortControllerRef.current.signal
+          ),
+          fetchTopTracks(
+            username,
+            apiKey,
+            targetPeriod,
+            abortControllerRef.current.signal
+          ),
+        ]);
 
-        cacheRef.current[targetPeriod] = results;
-        setArtists(results);
+        cacheRef.current[targetPeriod] = {
+          artists: resolvedArtists,
+          tracks: resolvedTracks,
+        };
+
+        setArtists(resolvedArtists);
+        setTracks(resolvedTracks);
         setIsLoading(false);
       } catch (err) {
         if (err.name === 'AbortError') return;
-        setError(err.message || 'Failed to fetch top artists');
+        setError(err.message || 'Failed to fetch top music stats');
         setIsLoading(false);
       }
     },
@@ -69,19 +84,20 @@ export function useTopArtists(initialPeriod = '7day') {
   );
 
   useEffect(() => {
-    loadArtists(period);
+    loadStats(period);
 
     return () => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
     };
-  }, [loadArtists, period]);
+  }, [loadStats, period]);
 
   return {
     period,
     setPeriod,
     artists,
+    tracks,
     isLoading,
     error,
     isConfigured: Boolean(username && apiKey),
