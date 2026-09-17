@@ -125,16 +125,8 @@ const TableOfContents = () => {
           <span>CAM // 35mm</span>
         </div>
 
-        {/* Ruler Track with Vignette Gradient Mask */}
-        <div
-          className="relative flex flex-col"
-          style={{
-            maskImage:
-              'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
-            WebkitMaskImage:
-              'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
-          }}
-        >
+        {/* Ruler Track */}
+        <div className="relative flex flex-col">
           {sections.map(({ id, number, label, code }, index) => {
             const isActive = activeId === id;
 
