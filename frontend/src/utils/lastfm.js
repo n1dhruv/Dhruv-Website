@@ -258,26 +258,123 @@ export async function enrichTrackMetadata(track, apiKey, signal) {
 }
 
 /**
- * Resolves the cover/album artwork for an artist.
+ * Resolves the actual artist portrait/cover photo (not album artwork).
  *
  * Tries:
- * 1. Last.fm artist.getTopAlbums (iconic album artwork)
- * 2. iTunes Search API (clean primary artist search fallback)
+ * 1. Deezer Artist Search (JSONP in browser, fetch in Node) -> returns verified 500x500/1000x1000 artist portrait.
+ * 2. Wikipedia Summary API (musician / artist portrait).
+ * 3. Fallback to Last.fm top release if portrait is unavailable.
  *
  * @param {string} artistName
- * @param {string} apiKey
+ * @param {string} [apiKey]
  * @param {AbortSignal} [signal]
  * @returns {Promise<string | null>}
  */
 export async function resolveArtistArtwork(artistName, apiKey, signal) {
   if (!artistName) return null;
 
-  // 1. Try Last.fm artist.getTopAlbums
+  const primary = artistName.split(/[,&]/)[0].replace(/[^\w\s]/gi, ' ').trim();
+  if (!primary) return null;
+
+  // 1. In browser environment: Deezer JSONP to get official artist photo without CORS
+  if (typeof window !== 'undefined') {
+    try {
+      const jsonpPhoto = await new Promise((resolve) => {
+        const cbName = `dz_${Math.random().toString(36).slice(2, 9)}_${Date.now()}`;
+        const script = document.createElement('script');
+        let done = false;
+
+        const cleanup = () => {
+          if (done) return;
+          done = true;
+          try {
+            delete window[cbName];
+          } catch {
+            window[cbName] = undefined;
+          }
+          if (script.parentNode) {
+            script.parentNode.removeChild(script);
+          }
+        };
+
+        const timer = setTimeout(() => {
+          cleanup();
+          resolve(null);
+        }, 4000);
+
+        window[cbName] = (data) => {
+          clearTimeout(timer);
+          cleanup();
+          const artist = data?.data?.[0];
+          if (artist?.picture_xl || artist?.picture_big || artist?.picture_medium) {
+            resolve(artist.picture_xl || artist.picture_big || artist.picture_medium);
+          } else {
+            resolve(null);
+          }
+        };
+
+        script.onerror = () => {
+          clearTimeout(timer);
+          cleanup();
+          resolve(null);
+        };
+
+        script.src = `https://api.deezer.com/search/artist?q=${encodeURIComponent(primary)}&output=jsonp&callback=${cbName}`;
+        document.body.appendChild(script);
+      });
+
+      if (jsonpPhoto) {
+        return jsonpPhoto;
+      }
+    } catch {
+      // Fall through
+    }
+  } else {
+    // In Node.js / test environment: direct fetch from Deezer API
+    try {
+      const res = await fetch(`https://api.deezer.com/search/artist?q=${encodeURIComponent(primary)}`, { signal });
+      if (res.ok) {
+        const data = await res.json();
+        const artist = data?.data?.[0];
+        if (artist?.picture_xl || artist?.picture_big || artist?.picture_medium) {
+          return artist.picture_xl || artist.picture_big || artist.picture_medium;
+        }
+      }
+    } catch {
+      // Fall through
+    }
+  }
+
+  // 2. Wikipedia Artist Summary photo fallback
+  try {
+    const wikiName = primary.replace(/\s+/g, '_');
+    const wikiUrls = [
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiName)}`,
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiName)}_(musician)`,
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiName)}_(singer)`,
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiName)}_(rapper)`,
+    ];
+
+    for (const url of wikiUrls) {
+      const res = await fetch(url, { signal });
+      if (res.ok) {
+        const data = await res.json();
+        const img = data?.thumbnail?.source;
+        if (img && !img.endsWith('.svg') && !img.includes('disambig')) {
+          return img;
+        }
+      }
+    }
+  } catch {
+    // Fall through
+  }
+
+  // 3. Fallback: Last.fm artist.getTopAlbums if portrait could not be located
   if (apiKey) {
     try {
       const params = new URLSearchParams({
         method: 'artist.getTopAlbums',
-        artist: artistName.trim(),
+        artist: primary,
         api_key: apiKey.trim(),
         format: 'json',
         limit: '1',
@@ -299,23 +396,8 @@ export async function resolveArtistArtwork(artistName, apiKey, signal) {
         }
       }
     } catch {
-      // Fall through to iTunes
+      // Fall through
     }
-  }
-
-  // 2. Try iTunes Search API
-  try {
-    const primary = artistName.split(/[,&]/)[0].replace(/[^\w\s]/gi, ' ').trim();
-    const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(primary)}&entity=album&limit=1`;
-    const res = await fetch(itunesUrl, { signal });
-    if (res.ok) {
-      const data = await res.json();
-      if (data?.results?.[0]?.artworkUrl100) {
-        return data.results[0].artworkUrl100.replace('100x100bb', '300x300bb');
-      }
-    }
-  } catch {
-    // Ignore error
   }
 
   return null;
