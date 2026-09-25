@@ -47,7 +47,7 @@ const Hero = () => (
           variants={fadeUp}
           custom={0}
         >
-          <h1 className="display-name leading-none">Dhruv Sharma</h1>
+          <h1 className="display-name leading-none">i m Dhruv Sharma</h1>
         </motion.div>
 
         {/* Avatar — square matched to name cap-height, top & bottom aligned */}
@@ -77,16 +77,16 @@ const Hero = () => (
         custom={1}
       >
         <p className="text-snow/90">
-          I build backend and AI systems. I care about problems with real stakes, the kind where a good decision saves someone time or trouble, and I spend most of my thinking time on architecture: how pieces fit together, where they'll break.
+          I build backend and AI systems. I care about <span className="intro-hl">problems with real stakes</span>, the kind where a good decision saves someone time or trouble, and I spend most of my thinking time on <span className="intro-hl">architecture</span>: how pieces fit together, where they&apos;ll break.
         </p>
         <p className="text-snow/90">
-          I run Linux and have for years. I can't imagine giving it up.
+          I <span className="intro-hl">run Linux</span> and have for years. I can&apos;t imagine giving it up.
         </p>
         <p className="text-snow/90">
-          I rarely get an idea right on the first try. I'd rather sit with a thought, rework it, and let it get better through a few rounds than ship the first version. I stay close to whoever's using what I build, and their feedback shapes the next iteration more than my own assumptions do.
+          I rarely get an idea right on the first try. I&apos;d rather sit with a thought, rework it, and let it get better through a few rounds than ship the first version. I stay close to whoever&apos;s using what I build, and their <span className="intro-hl">feedback shapes the next iteration</span> more than my own assumptions do.
         </p>
         <p className="text-snow/90">
-          I'm also an open-source contributor, currently working on AI governance tooling, and I like putting time into making AI systems safer and easier to trust.
+          I&apos;m also an <span className="intro-hl">open-source contributor</span>, currently working on <span className="intro-hl">AI governance tooling</span>, and I like putting time into making AI systems <span className="intro-hl">safer and easier to trust</span>.
         </p>
 
       </motion.div>

@@ -1,16 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Grindy Brush (Sronstudio, via 1001fonts) — hero name only ───
-   Free for personal use. Commercial use needs the full license:
-   https://sronstudio.com/product/grindy-brush-font/ */
+/* ─── Eagle Horizon (Letterara, via 1001fonts) — hero name only ───
+   Free for personal use. */
 @font-face {
-  font-family: 'Grindy Brush';
-  src: url('/fonts/grindy-brush.woff2') format('woff2'),
-       url('/fonts/grindy-brush.otf') format('opentype');
+  font-family: 'Eagle Horizon';
+  src: url('/fonts/eagle-horizon.woff2') format('woff2'),
+       url('/fonts/eagle-horizon.ttf') format('truetype');
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
@@ -69,10 +68,11 @@
     background-image: radial-gradient(circle, rgba(139,124,248,0.05) 1px, transparent 1px);
     background-size: 28px 28px;
     color: var(--snow);
-    font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: "Space Grotesk", Inter, -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-transform: lowercase; /* experiment: all-lowercase look */
   }
 
   ::selection {
@@ -98,7 +98,7 @@
 
 /* ─── Typography ─────────────────────────────────────────────────── */
 .display-name {
-  font-family: 'Grindy Brush', Syne, cursive;
+  font-family: 'Eagle Horizon', Syne, sans-serif;
   font-weight: 400;
   font-size: clamp(2.4rem, 6vw, 4rem);
   line-height: 1.02;
@@ -120,6 +120,18 @@
   font-weight: 700;
   color: var(--snow);
   letter-spacing: -0.02em;
+}
+
+/* ─── Intro highlight (marker-style emphasis) ──────────────────────── */
+.intro-hl {
+  color: #fff;
+  font-weight: 500;
+  background: rgba(139, 124, 248, 0.16);
+  border-bottom: 1px solid rgba(139, 124, 248, 0.55);
+  padding: 0 0.3em;
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 /* ─── GIF Banner ─────────────────────────────────────────────────── */
@@ -391,6 +403,13 @@
 .scroll-to-top:hover {
   background: var(--navy-mid);
   box-shadow: 0 0 20px var(--navy-glow);
+}
+
+/* ─── Experiment: force every rendered letter lowercase ──────────────
+   Overrides all `uppercase`/`capitalize` rules (section labels, tags,
+   buttons, Tailwind `uppercase` utilities). Delete to revert. */
+*, *::before, *::after {
+  text-transform: lowercase !important;
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────── */
