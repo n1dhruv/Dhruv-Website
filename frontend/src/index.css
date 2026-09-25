@@ -4,7 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── CSS Custom Properties ──────────────────────────────────────── */
+/* ─── Grindy Brush (Sronstudio, via 1001fonts) — hero name only ───
+   Free for personal use. Commercial use needs the full license:
+   https://sronstudio.com/product/grindy-brush-font/ */
+@font-face {
+  font-family: 'Grindy Brush';
+  src: url('/fonts/grindy-brush.woff2') format('woff2'),
+       url('/fonts/grindy-brush.otf') format('opentype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
 :root {
   /* Minimalist dark palette */
   --bg:            #000000;
@@ -88,8 +98,8 @@
 
 /* ─── Typography ─────────────────────────────────────────────────── */
 .display-name {
-  font-family: Syne, sans-serif;
-  font-weight: 700;
+  font-family: 'Grindy Brush', Syne, cursive;
+  font-weight: 400;
   font-size: clamp(2.4rem, 6vw, 4rem);
   line-height: 1.02;
   letter-spacing: -0.03em;

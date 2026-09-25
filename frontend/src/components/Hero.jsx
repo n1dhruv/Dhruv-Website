@@ -39,20 +39,20 @@ const Hero = () => (
     {/* ── Profile row ────────────────────────────────────────── */}
     <div className="panel mt-0 px-6 pt-5 pb-6 flex flex-col gap-5">
       {/* Name + avatar */}
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-center justify-between gap-4">
         <motion.div
-          className="flex flex-col gap-1"
+          className="flex flex-col justify-center gap-1"
           initial="hidden"
           animate="visible"
           variants={fadeUp}
           custom={0}
         >
-          <h1 className="display-name">Dhruv Sharma</h1>
+          <h1 className="display-name leading-none">Dhruv Sharma</h1>
         </motion.div>
 
-        {/* Avatar */}
+        {/* Avatar — square matched to name cap-height, top & bottom aligned */}
         <motion.div
-          className="relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 overflow-hidden"
+          className="relative shrink-0 overflow-hidden h-8 w-8 sm:h-[clamp(2.4rem,6vw,4rem)] sm:w-[clamp(2.4rem,6vw,4rem)]"
           style={{ border: '1px solid rgba(139,124,248,0.25)' }}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -62,7 +62,7 @@ const Hero = () => (
             src={portfolioImage}
             alt="Dhruv Sharma"
             fill
-            sizes="80px"
+            sizes="(max-width: 640px) 48px, 80px"
             className="object-cover object-center"
           />
         </motion.div>
@@ -77,21 +77,18 @@ const Hero = () => (
         custom={1}
       >
         <p className="text-snow/90">
-          Backend, AI &amp; Open Source developer. I build scalable platforms, intelligent systems,
-          and reliable APIs — always looking for problems worth solving.
+          I build backend and AI systems. I care about problems with real stakes, the kind where a good decision saves someone time or trouble, and I spend most of my thinking time on architecture: how pieces fit together, where they'll break.
         </p>
-        <ul className="mt-1 space-y-1 text-mist">
-          {[
-            'Currently building at Aerilon Tech & exploring LLM systems.',
-            'Love contributing to open source and learning in public.',
-            'Ranked 7th in Capsule Vision 2024 ML Challenge.',
-          ].map((line) => (
-            <li key={line} className="flex items-start gap-2">
-              <span className="mt-[5px] w-1 h-1 rounded-full bg-lilac shrink-0" />
-              {line}
-            </li>
-          ))}
-        </ul>
+        <p className="text-snow/90">
+          I run Linux and have for years. I can't imagine giving it up.
+        </p>
+        <p className="text-snow/90">
+          I rarely get an idea right on the first try. I'd rather sit with a thought, rework it, and let it get better through a few rounds than ship the first version. I stay close to whoever's using what I build, and their feedback shapes the next iteration more than my own assumptions do.
+        </p>
+        <p className="text-snow/90">
+          I'm also an open-source contributor, currently working on AI governance tooling, and I like putting time into making AI systems safer and easier to trust.
+        </p>
+
       </motion.div>
 
       {/* CTA buttons */}
