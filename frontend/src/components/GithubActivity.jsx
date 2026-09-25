@@ -107,7 +107,7 @@ const GithubActivity = () => {
                 onMouseLeave: () => {
                   setTooltip((prev) => ({ ...prev, show: false }));
                 },
-                className: 'transition-all duration-150 hover:stroke-white hover:stroke-[1.5px] cursor-pointer',
+                className: 'transition-all duration-150 hover:stroke-lilac hover:stroke-[1.5px] cursor-pointer',
               })
             }
           />
@@ -135,11 +135,11 @@ const GithubActivity = () => {
               transition={{ duration: 0.12, ease: 'easeOut' }}
               className="flex flex-col items-center"
             >
-              <div className="px-3 py-1.5 text-xs font-medium text-slate-100 bg-[#161226]/95 border border-[#7859d9]/60 rounded-md shadow-lg shadow-black/80 backdrop-blur-md whitespace-nowrap">
+              <div className="px-3 py-1.5 text-xs font-medium text-slate-100 bg-[rgb(var(--navy)/0.95)] border border-lilac/60 rounded-md shadow-lg shadow-black/80 backdrop-blur-md whitespace-nowrap">
                 {tooltip.text}
               </div>
               {/* Caret arrow pointing directly down to the hovered date square */}
-              <div className="w-2.5 h-2.5 bg-[#161226]/95 border-r border-b border-[#7859d9]/60 rotate-45 -mt-1.5 z-10" />
+              <div className="w-2.5 h-2.5 bg-[rgb(var(--navy)/0.95)] border-r border-b border-lilac/60 rotate-45 -mt-1.5 z-10" />
             </motion.div>
           </div>
         )}
