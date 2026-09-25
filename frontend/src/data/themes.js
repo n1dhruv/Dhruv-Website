@@ -83,6 +83,12 @@ export function applyThemeVars(theme) {
   } catch {
     /* private mode — theme still applies for this visit */
   }
+  // Let mounted widgets (e.g. GitHub heatmap) follow manual switches.
+  try {
+    window.dispatchEvent(new CustomEvent('themechange', { detail: theme.id }));
+  } catch {
+    /* older browsers — vars above already applied */
+  }
 }
 
 /** Theme id chosen by the pre-paint boot script (if it ran). */

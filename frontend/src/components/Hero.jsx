@@ -1,13 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiMail, FiFileText } from 'react-icons/fi';
+import { AnimatePresence, motion } from 'framer-motion';
+import { FiChevronLeft, FiChevronRight, FiGithub, FiLinkedin, FiMail, FiFileText } from 'react-icons/fi';
 import { FaXTwitter } from 'react-icons/fa6';
 import { SiPeerlist } from 'react-icons/si';
 import portfolioImage from '../assets/portfolio image.jpeg';
-import { getTheme, getBootedThemeId, pickRandomTheme, applyThemeVars } from '../data/themes';
+import { THEMES, getTheme, getBootedThemeId, pickRandomTheme, applyThemeVars } from '../data/themes';
 
 const socials = [
   { label: 'GitHub',    icon: FiGithub,   url: 'https://github.com/n1dhruv' },
@@ -21,42 +21,134 @@ const fadeUp = {
   visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.5, ease: 'easeOut' } }),
 };
 
+// Slider: incoming banner slides in from the travel direction,
+// outgoing one drifts out the other way.
+const bannerVariants = {
+  enter: (dir) => ({ x: dir >= 0 ? '100%' : '-100%', opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (dir) => ({ x: dir >= 0 ? '-35%' : '35%', opacity: 0 }),
+};
+
+const SWIPE_THRESHOLD_PX = 50;
+
+const arrowBtn =
+  'absolute top-1/2 -translate-y-1/2 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-black/45 text-mist backdrop-blur-sm transition-all duration-200 hover:border-lilac hover:text-snow focus-visible:opacity-100 focus-visible:outline-none md:opacity-0 md:group-hover:opacity-100';
+
 const Hero = () => {
   // SSR renders NO banner image (and default theme) so hydration is
   // byte-identical. After mount we pick the booted/random theme and fade
   // the correct banner in. Rendering theme-dependent markup during SSR
   // causes a hydration mismatch React refuses to patch (banner stuck).
-  const [theme, setTheme] = useState(() => getTheme(null));
+  const [index, setIndex] = useState(() => {
+    if (typeof window === 'undefined') return 0;
+    const i = THEMES.findIndex((t) => t.id === getBootedThemeId());
+    return i >= 0 ? i : 0;
+  });
+  const [direction, setDirection] = useState(0);
   const [bannerReady, setBannerReady] = useState(false);
+  const touchX = useRef(null);
+  const theme = THEMES[index] ?? THEMES[0];
+
+  const goTo = (i) => {
+    const n = (i + THEMES.length) % THEMES.length;
+    if (n === index) return;
+    setDirection(n > index || (index === THEMES.length - 1 && n === 0) ? 1 : -1);
+    setIndex(n);
+    applyThemeVars(THEMES[n]);
+  };
+
+  const handleTouchStart = (e) => {
+    touchX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchX.current;
+    touchX.current = null;
+    if (Math.abs(dx) < SWIPE_THRESHOLD_PX) return;
+    goTo(index + (dx < 0 ? 1 : -1));
+  };
 
   useEffect(() => {
     const bootedId = getBootedThemeId();
     const t = bootedId ? getTheme(bootedId) : pickRandomTheme();
-    setTheme(t);
+    const i = THEMES.findIndex((x) => x.id === t.id);
+    if (i >= 0 && i !== index) setIndex(i);
     applyThemeVars(t);
     const raf = requestAnimationFrame(() => setBannerReady(true));
     return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
   <section id="hero" className="w-full">
-    {/* ── GIF Banner (random theme per visit) ──────────────────── */}
+    {/* ── GIF Banner slider (arrows / dots / swipe) ──────────── */}
     <div
-      className="banner-wrap rounded-none overflow-hidden"
+      className="banner-wrap rounded-none overflow-hidden group [touch-action:pan-y] select-none"
       style={{ opacity: bannerReady ? 1 : 0, transition: 'opacity 700ms ease' }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {bannerReady && (
-      <Image
-        src={theme.src}
-        alt={`${theme.label} banner`}
-        fill={false}
-        width={760}
-        height={220}
-        className="w-full h-full object-cover object-[center_30%]"
-        priority
-        unoptimized
-      />
+        <AnimatePresence initial={false} custom={direction} mode="popLayout">
+          <motion.div
+            key={theme.id}
+            className="absolute inset-0"
+            custom={direction}
+            variants={bannerVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
+          >
+            <Image
+              src={theme.src}
+              alt={`${theme.label} banner`}
+              fill
+              sizes="(max-width: 760px) 100vw, 760px"
+              className="object-cover object-[center_30%]"
+              priority
+              unoptimized
+              draggable={false}
+            />
+          </motion.div>
+        </AnimatePresence>
       )}
+
+      {/* Arrows — always visible on touch, reveal on hover on desktop */}
+      <button
+        type="button"
+        aria-label="Previous banner"
+        onClick={() => goTo(index - 1)}
+        className={`${arrowBtn} left-3`}
+      >
+        <FiChevronLeft size={16} />
+      </button>
+      <button
+        type="button"
+        aria-label="Next banner"
+        onClick={() => goTo(index + 1)}
+        className={`${arrowBtn} right-3`}
+      >
+        <FiChevronRight size={16} />
+      </button>
+
+      {/* Dots — active pill wears the current theme accent */}
+      <div className="absolute bottom-2.5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5">
+        {THEMES.map((t, i) => (
+          <button
+            key={t.id}
+            type="button"
+            aria-label={`Show ${t.label} banner`}
+            onClick={() => goTo(i)}
+            className={`h-1 rounded-full transition-all duration-300 focus-visible:outline-none ${
+              bannerReady && i === index
+                ? 'w-5 bg-lilac'
+                : 'w-1 bg-white/30 hover:bg-white/60'
+            }`}
+          />
+        ))}
+      </div>
     </div>
 
     {/* ── Profile row ────────────────────────────────────────── */}

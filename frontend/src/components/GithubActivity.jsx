@@ -37,19 +37,25 @@ const GithubActivity = () => {
 
   // Heatmap ramp follows the active banner theme. SSR + hydration use the
   // default ramp (byte-identical, no mismatch); the effect swaps in the
-  // booted theme's ramp right after mount.
+  // booted theme's ramp right after mount, and the 'themechange' listener
+  // keeps it in sync when the user switches banners manually.
   const [calColors, setCalColors] = useState(() => getTheme(null).cal);
 
   useEffect(() => {
-    let id = getBootedThemeId();
-    if (!id) {
-      try {
-        id = window.sessionStorage.getItem('dhruv-portfolio-theme');
-      } catch {
-        id = null;
+    const sync = () => {
+      let id = getBootedThemeId();
+      if (!id) {
+        try {
+          id = window.sessionStorage.getItem('dhruv-portfolio-theme');
+        } catch {
+          id = null;
+        }
       }
-    }
-    setCalColors(getTheme(id).cal);
+      setCalColors(getTheme(id).cal);
+    };
+    sync();
+    window.addEventListener('themechange', sync);
+    return () => window.removeEventListener('themechange', sync);
   }, []);
 
   const handleHover = (e, activity) => {
