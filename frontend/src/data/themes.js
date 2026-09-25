@@ -12,11 +12,9 @@
 
 import purpleBg from '../assets/portfolio background 2.gif';
 import sunsetBg from '../assets/banners/sunset.gif';
-import eclipseBg from '../assets/banners/eclipse.gif';
 import bemidjiBg from '../assets/banners/bemidji.gif';
 import kirokazeBg from '../assets/banners/kirokaze.gif';
-import quicksilverBg from '../assets/banners/quicksilver.jpeg';
-import spidermanBg from '../assets/banners/spiderman.jpeg';
+// import spidermanBg from '../assets/banners/spiderman.jpeg'; // parked — re-enable on request
 
 export const THEME_STORAGE_KEY = 'dhruv-portfolio-theme';
 
@@ -38,14 +36,6 @@ export const THEMES = [
     cal: ['rgba(255, 255, 255, 0.04)', '#4a1c33', '#7a2c50', '#b44a76', '#e0638f'],
   },
   {
-    id: 'eclipse-blue',
-    label: 'Eclipse Blue',
-    src: eclipseBg,
-    vars: { lilac: '95 107 255', navy: '18 22 80', navyMid: '44 52 153', glow: '95 107 255' },
-    accentHex: '#5f6bff',
-    cal: ['rgba(255, 255, 255, 0.04)', '#1c2266', '#2c3499', '#4550d6', '#5f6bff'],
-  },
-  {
     id: 'ice-cyan',
     label: 'Ice Cyan',
     src: bemidjiBg,
@@ -61,22 +51,15 @@ export const THEMES = [
     accentHex: '#5fc9b5',
     cal: ['rgba(255, 255, 255, 0.04)', '#0e3530', '#17574f', '#2f8a7d', '#5fc9b5'],
   },
-  {
-    id: 'quicksilver',
-    label: 'Quicksilver',
-    src: quicksilverBg,
-    vars: { lilac: '201 209 217', navy: '42 47 54', navyMid: '74 82 92', glow: '201 209 217' },
-    accentHex: '#c9d1d9',
-    cal: ['rgba(255, 255, 255, 0.04)', '#2b3038', '#454e59', '#7d8894', '#c9d1d9'],
-  },
-  {
-    id: 'spidey-red',
-    label: 'Spidey Red',
-    src: spidermanBg,
-    vars: { lilac: '229 50 62', navy: '77 10 18', navyMid: '122 16 32', glow: '229 50 62' },
-    accentHex: '#e5323e',
-    cal: ['rgba(255, 255, 255, 0.04)', '#4d0a12', '#7a1020', '#b51f2c', '#e5323e'],
-  },
+  // PARKED — spidey-red theme (gif removed, uncomment to re-enable):
+  // {
+  //   id: 'spidey-red',
+  //   label: 'Spidey Red',
+  //   src: spidermanBg,
+  //   vars: { lilac: '229 50 62', navy: '77 10 18', navyMid: '122 16 32', glow: '229 50 62' },
+  //   accentHex: '#e5323e',
+  //   cal: ['rgba(255, 255, 255, 0.04)', '#4d0a12', '#7a1020', '#b51f2c', '#e5323e'],
+  // },
 ];
 
 export function getTheme(id) {
