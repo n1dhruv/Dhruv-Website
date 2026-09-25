@@ -45,7 +45,7 @@ const TopStats = () => {
                 onClick={() => setPeriod(key)}
                 className={`font-mono text-[10px] tracking-wider uppercase px-2.5 py-1 transition-all duration-200 border select-none ${
                   isActive
-                    ? 'bg-lilac text-ink border-lilac font-bold shadow-[0_0_12px_rgba(139,124,248,0.35)]'
+                    ? 'bg-lilac text-ink border-lilac font-bold shadow-[0_0_12px_rgb(var(--lilac)/0.35)]'
                     : 'bg-white/[0.02] text-mist border-line hover:border-line-strong hover:text-snow hover:bg-white/[0.04]'
                 }`}
               >

@@ -65,14 +65,14 @@ export default function CustomCursor() {
     <>
       {/* Outer Following Ring */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[99998] rounded-full border border-[#8b7cf8]/70"
+        className="fixed top-0 left-0 pointer-events-none z-[99998] rounded-full border border-lilac/70"
         animate={{
           x: mousePosition.x - (isHovered ? 24 : 16),
           y: mousePosition.y - (isHovered ? 24 : 16),
           width: isHovered ? 48 : 32,
           height: isHovered ? 48 : 32,
-          backgroundColor: isHovered ? 'rgba(139, 124, 248, 0.12)' : 'rgba(139, 124, 248, 0.03)',
-          borderColor: isHovered ? 'rgba(139, 124, 248, 0.9)' : 'rgba(139, 124, 248, 0.5)',
+          backgroundColor: isHovered ? 'rgb(var(--lilac) / 0.12)' : 'rgb(var(--lilac) / 0.03)',
+          borderColor: isHovered ? 'rgb(var(--lilac) / 0.9)' : 'rgb(var(--lilac) / 0.5)',
           scale: isClicked ? 0.8 : 1,
         }}
         transition={{
@@ -85,7 +85,7 @@ export default function CustomCursor() {
 
       {/* Inner Precision Dot */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[99999] rounded-full bg-[#8b7cf8]"
+        className="fixed top-0 left-0 pointer-events-none z-[99999] rounded-full bg-lilac"
         animate={{
           x: mousePosition.x - (isHovered ? 4 : 3),
           y: mousePosition.y - (isHovered ? 4 : 3),

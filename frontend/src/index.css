@@ -22,11 +22,13 @@
   --line:          rgba(255,255,255,0.07);
   --line-strong:   rgba(255,255,255,0.14);
 
-  /* Accent — deep navy #110852 */
-  --navy:          #110852;
-  --navy-mid:      #1d0e82;
-  --navy-glow:     rgba(17, 8, 82, 0.30);
-  --lilac:         #8b7cf8;
+  /* Accent — space-separated RGB channels so the banner theme engine
+     can swap them at runtime (see src/data/themes.js).
+     Defaults = nebula purple. */
+  --lilac:    139 124 248;
+  --navy:     17 8 82;
+  --navy-mid: 29 14 130;
+  --glow:     17 8 82;
 
   /* Text */
   --snow:          #f2f2f4;
@@ -35,11 +37,11 @@
 
   /* Legacy retro vars (KeyboardNavigation compatibility) */
   --bg-color:      #080810;
-  --accent-retro:  #110852;
+  --accent-retro:  rgb(var(--navy));
   --text-primary:  #f2f2f4;
   --text-secondary:#9094a4;
   --border-color:  rgba(255,255,255,0.07);
-  --retro-shadow:  0 0 20px rgba(17,8,82,0.3);
+  --retro-shadow:  0 0 20px rgb(var(--glow) / 0.3);
 }
 
 /* ─── Base Reset ─────────────────────────────────────────────────── */
@@ -65,7 +67,7 @@
 
   body {
     background-color: var(--bg);
-    background-image: radial-gradient(circle, rgba(139,124,248,0.05) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgb(var(--lilac) / 0.05) 1px, transparent 1px);
     background-size: 28px 28px;
     color: var(--snow);
     font-family: "Space Grotesk", Inter, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -76,7 +78,7 @@
   }
 
   ::selection {
-    background: rgba(17, 8, 82, 0.6);
+    background: rgb(var(--glow) / 0.6);
     color: #fff;
   }
 }
@@ -111,7 +113,7 @@
   font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--lilac);
+  color: rgb(var(--lilac));
 }
 
 .section-title {
@@ -126,8 +128,8 @@
 .intro-hl {
   color: #fff;
   font-weight: 500;
-  background: rgba(139, 124, 248, 0.16);
-  border-bottom: 1px solid rgba(139, 124, 248, 0.55);
+  background: rgb(var(--lilac) / 0.16);
+  border-bottom: 1px solid rgb(var(--lilac) / 0.55);
   padding: 0 0.3em;
   border-radius: 3px;
   box-decoration-break: clone;
@@ -194,13 +196,13 @@
 }
 
 .tag-pill:hover {
-  border-color: var(--lilac);
-  color: var(--lilac);
+  border-color: rgb(var(--lilac));
+  color: rgb(var(--lilac));
 }
 
 .tag-pill-active {
-  background: var(--navy);
-  border-color: var(--navy-mid);
+  background: rgb(var(--navy));
+  border-color: rgb(var(--navy-mid));
   color: #fff;
 }
 
@@ -210,20 +212,20 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.55rem 1.25rem;
-  background: var(--navy);
+  background: rgb(var(--navy));
   color: #fff;
   font-family: "Space Mono", monospace;
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  border: 1px solid var(--navy-mid);
+  border: 1px solid rgb(var(--navy-mid));
   text-decoration: none;
   transition: background 0.2s, box-shadow 0.2s;
 }
 
 .btn-primary:hover {
-  background: var(--navy-mid);
-  box-shadow: 0 0 20px var(--navy-glow);
+  background: rgb(var(--navy-mid));
+  box-shadow: 0 0 20px rgb(var(--glow) / 0.3);
 }
 
 .btn-ghost {
@@ -243,7 +245,7 @@
 }
 
 .btn-ghost:hover {
-  border-color: var(--lilac);
+  border-color: rgb(var(--lilac));
   color: var(--snow);
 }
 
@@ -264,9 +266,9 @@
 }
 
 .social-chip:hover {
-  border-color: var(--lilac);
+  border-color: rgb(var(--lilac));
   color: var(--snow);
-  background: rgba(139,124,248,0.06);
+  background: rgb(var(--lilac) / 0.06);
 }
 
 /* ─── Search Input ───────────────────────────────────────────────── */
@@ -287,8 +289,8 @@
 }
 
 .search-input:focus {
-  border-color: rgba(139,124,248,0.5);
-  box-shadow: 0 0 0 3px rgba(17,8,82,0.2);
+  border-color: rgb(var(--lilac) / 0.5);
+  box-shadow: 0 0 0 3px rgb(var(--glow) / 0.2);
 }
 
 /* ─── Project Card ───────────────────────────────────────────────── */
@@ -299,8 +301,8 @@
 }
 
 .project-card:hover {
-  border-color: rgba(139,124,248,0.25);
-  box-shadow: 0 4px 24px rgba(17,8,82,0.2);
+  border-color: rgb(var(--lilac) / 0.25);
+  box-shadow: 0 4px 24px rgb(var(--glow) / 0.2);
 }
 
 /* ─── GitHub Contribution Grid ───────────────────────────────────── */
@@ -316,7 +318,7 @@
 /* ─── Experience Accent Bar ──────────────────────────────────────── */
 .exp-bar {
   width: 2px;
-  background: linear-gradient(to bottom, var(--navy-mid), transparent);
+  background: linear-gradient(to bottom, rgb(var(--navy-mid)), transparent);
   flex-shrink: 0;
 }
 
@@ -389,8 +391,8 @@
   z-index: 1000;
   width: 40px;
   height: 40px;
-  background: var(--navy);
-  border: 1px solid var(--navy-mid);
+  background: rgb(var(--navy));
+  border: 1px solid rgb(var(--navy-mid));
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
@@ -401,8 +403,8 @@
 }
 
 .scroll-to-top:hover {
-  background: var(--navy-mid);
-  box-shadow: 0 0 20px var(--navy-glow);
+  background: rgb(var(--navy-mid));
+  box-shadow: 0 0 20px rgb(var(--glow) / 0.3);
 }
 
 /* ─── Experiment: force every rendered letter lowercase ──────────────

@@ -2,6 +2,7 @@ import favicon from '../src/assets/favicon.webp'
 import JsonLd from '../src/components/JsonLd'
 import CustomCursor from '../src/components/CustomCursor'
 import { projects } from '../src/data/projects'
+import { THEMES } from '../src/data/themes'
 import { person, SITE_URL } from '../src/data/site'
 import '../src/index.css'
 
@@ -92,9 +93,17 @@ const structuredData = {
 }
 
 export default function RootLayout({ children }) {
+  // Pre-paint boot: pick a random banner theme and set its CSS channel
+  // variables before first paint, so the accent color is correct on the
+  // very first frame (no purple flash). The id is stashed on window.__theme
+  // so client components (Hero banner, GitHub heatmap) stay in sync.
+  const themeBootMap = Object.fromEntries(THEMES.map((t) => [t.id, t.vars]));
+  const themeBootScript = `(function(){try{var T=${JSON.stringify(themeBootMap)};var ids=Object.keys(T);var id=ids[Math.floor(Math.random()*ids.length)];var v=T[id];var s=document.documentElement.style;s.setProperty('--lilac',v.lilac);s.setProperty('--navy',v.navy);s.setProperty('--navy-mid',v.navyMid);s.setProperty('--glow',v.glow);window.__theme=id;}catch(e){}})();`;
+
   return (
     <html lang="en" className="dark">
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
         <JsonLd data={structuredData} />
       </head>
       <body>

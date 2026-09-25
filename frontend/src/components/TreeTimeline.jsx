@@ -92,7 +92,7 @@ const TreeTimeline = () => {
                   <div className="flex justify-between items-start">
                     <span
                       className="font-mono text-[0.6rem] tracking-widest uppercase self-start px-2 py-0.5"
-                      style={{ background: 'var(--navy)', color: '#fff', border: '1px solid var(--navy-mid)' }}
+                      style={{ background: 'rgb(var(--navy))', color: '#fff', border: '1px solid rgb(var(--navy-mid))' }}
                     >
                       {exp.duration}
                     </span>

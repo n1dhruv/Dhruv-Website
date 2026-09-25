@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import GitHubCalendar from 'react-github-calendar';
+import { getTheme, getBootedThemeId } from '../data/themes';
 
 const formatDate = (dateString) => {
   if (!dateString) return '';
@@ -33,6 +34,23 @@ const GithubActivity = () => {
     x: 0,
     y: 0,
   });
+
+  // Heatmap ramp follows the active banner theme. SSR + hydration use the
+  // default ramp (byte-identical, no mismatch); the effect swaps in the
+  // booted theme's ramp right after mount.
+  const [calColors, setCalColors] = useState(() => getTheme(null).cal);
+
+  useEffect(() => {
+    let id = getBootedThemeId();
+    if (!id) {
+      try {
+        id = window.sessionStorage.getItem('dhruv-portfolio-theme');
+      } catch {
+        id = null;
+      }
+    }
+    setCalColors(getTheme(id).cal);
+  }, []);
 
   const handleHover = (e, activity) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -71,13 +89,7 @@ const GithubActivity = () => {
             username="n1dhruv"
             colorScheme="dark"
             theme={{
-              dark: [
-                'rgba(255, 255, 255, 0.04)', // Empty square (Level 0)
-                '#39296e', // Level 1
-                '#5841a1', // Level 2
-                '#7859d9', // Level 3
-                '#8b7cf8', // Level 4 (Highest)
-              ]
+              dark: calColors
             }}
             blockSize={10}
             blockMargin={3}

@@ -1,12 +1,13 @@
 'use client'
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail, FiFileText } from 'react-icons/fi';
 import { FaXTwitter } from 'react-icons/fa6';
 import { SiPeerlist } from 'react-icons/si';
-import portfolioBg from '../assets/portfolio background 2.gif';
 import portfolioImage from '../assets/portfolio image.jpeg';
+import { getTheme, getBootedThemeId, pickRandomTheme, applyThemeVars } from '../data/themes';
 
 const socials = [
   { label: 'GitHub',    icon: FiGithub,   url: 'https://github.com/n1dhruv' },
@@ -20,13 +21,34 @@ const fadeUp = {
   visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.5, ease: 'easeOut' } }),
 };
 
-const Hero = () => (
+const Hero = () => {
+  // SSR renders NO banner image (and default theme) so hydration is
+  // byte-identical. After mount we pick the booted/random theme and fade
+  // the correct banner in. Rendering theme-dependent markup during SSR
+  // causes a hydration mismatch React refuses to patch (banner stuck).
+  const [theme, setTheme] = useState(() => getTheme(null));
+  const [bannerReady, setBannerReady] = useState(false);
+
+  useEffect(() => {
+    const bootedId = getBootedThemeId();
+    const t = bootedId ? getTheme(bootedId) : pickRandomTheme();
+    setTheme(t);
+    applyThemeVars(t);
+    const raf = requestAnimationFrame(() => setBannerReady(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return (
   <section id="hero" className="w-full">
-    {/* ── GIF Banner ─────────────────────────────────────────── */}
-    <div className="banner-wrap rounded-none overflow-hidden">
+    {/* ── GIF Banner (random theme per visit) ──────────────────── */}
+    <div
+      className="banner-wrap rounded-none overflow-hidden"
+      style={{ opacity: bannerReady ? 1 : 0, transition: 'opacity 700ms ease' }}
+    >
+      {bannerReady && (
       <Image
-        src={portfolioBg}
-        alt="Banner"
+        src={theme.src}
+        alt={`${theme.label} banner`}
         fill={false}
         width={760}
         height={220}
@@ -34,6 +56,7 @@ const Hero = () => (
         priority
         unoptimized
       />
+      )}
     </div>
 
     {/* ── Profile row ────────────────────────────────────────── */}
@@ -47,13 +70,13 @@ const Hero = () => (
           variants={fadeUp}
           custom={0}
         >
-          <h1 className="display-name leading-none">i m Dhruv Sharma</h1>
+          <h1 className="display-name leading-none">hi, i m Dhruv</h1>
         </motion.div>
 
         {/* Avatar — square matched to name cap-height, top & bottom aligned */}
         <motion.div
           className="relative shrink-0 overflow-hidden h-8 w-8 sm:h-[clamp(2.4rem,6vw,4rem)] sm:w-[clamp(2.4rem,6vw,4rem)]"
-          style={{ border: '1px solid rgba(139,124,248,0.25)' }}
+          style={{ border: '1px solid rgb(var(--lilac) / 0.25)' }}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.1, duration: 0.45 }}
@@ -145,6 +168,7 @@ const Hero = () => (
       </motion.div>
     </div>
   </section>
-);
+  );
+};
 
 export default Hero;

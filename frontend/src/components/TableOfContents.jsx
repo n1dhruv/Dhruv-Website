@@ -146,7 +146,7 @@ const TableOfContents = () => {
                       <motion.div
                         layoutId="camera-active-pill"
                         transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-                        className="flex items-center gap-2 px-2.5 py-1 rounded-sm bg-[#090715] border border-lilac text-snow shadow-[0_0_15px_rgba(139,124,248,0.35)]"
+                        className="flex items-center gap-2 px-2.5 py-1 rounded-sm bg-[rgb(var(--navy)/0.35)] border border-lilac text-snow shadow-[0_0_15px_rgb(var(--lilac)/0.35)]"
                       >
                         <span className="w-1.5 h-1.5 bg-lilac rotate-45 shrink-0" />
                         <span className="font-mono text-[10px] tracking-wider uppercase font-bold text-snow">
@@ -168,7 +168,7 @@ const TableOfContents = () => {
                         transition={{ type: 'spring', stiffness: 350, damping: 28 }}
                         className="flex items-center justify-end w-full"
                       >
-                        <div className="w-6 h-[2px] bg-lilac shadow-[0_0_8px_rgba(139,124,248,0.9)]" />
+                        <div className="w-6 h-[2px] bg-lilac shadow-[0_0_8px_rgb(var(--lilac)/0.9)]" />
                         <div className="w-1.5 h-1.5 bg-snow rotate-45 -mr-1 shrink-0 shadow-[0_0_6px_#fff]" />
                       </motion.div>
                     ) : (

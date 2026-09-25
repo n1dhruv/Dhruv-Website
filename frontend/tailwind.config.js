@@ -19,11 +19,13 @@ export default {
         'surface-2': '#050505',     // elevated surface
         'line': 'rgba(255,255,255,0.07)', // subtle border
         'line-strong': 'rgba(255,255,255,0.14)',
-        // Accent family from #110852
-        'navy': '#110852',          // primary accent fill
-        'navy-mid': '#1d0e82',      // mid accent
-        'navy-glow': 'rgba(17,8,82,0.25)', // glow/shadow
-        'lilac': '#8b7cf8',         // lighter variant for text/icons
+        // Accent family — driven by banner theme CSS vars (see src/data/themes.js).
+        // Space-separated channels + <alpha-value> keep bg-lilac/10 style
+        // opacity modifiers working while the hue swaps at runtime.
+        'navy': 'rgb(var(--navy) / <alpha-value>)',          // primary accent fill
+        'navy-mid': 'rgb(var(--navy-mid) / <alpha-value>)',  // mid accent
+        'navy-glow': 'rgb(var(--glow) / <alpha-value>)',     // glow/shadow
+        'lilac': 'rgb(var(--lilac) / <alpha-value>)',        // lighter variant for text/icons
         // Text
         'snow': '#f2f2f4',          // primary text
         'mist': '#9094a4',          // secondary text
@@ -32,14 +34,14 @@ export default {
         retro: {
           bg: 'var(--bg-color)',
           surface: 'var(--surface)',
-          accent: 'var(--accent-retro)',
+          accent: 'rgb(var(--navy) / <alpha-value>)',
           text: 'var(--text-primary)',
           'text-secondary': 'var(--text-secondary)',
           border: 'var(--border-color)',
         }
       },
       backgroundImage: {
-        'dot-grid': 'radial-gradient(circle, rgba(139,124,248,0.06) 1px, transparent 1px)',
+        'dot-grid': 'radial-gradient(circle, rgb(var(--lilac) / 0.06) 1px, transparent 1px)',
       },
       backgroundSize: {
         'dot': '28px 28px',
