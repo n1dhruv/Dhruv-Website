@@ -6,10 +6,10 @@ import { motion } from 'framer-motion';
 const sections = [
   { id: 'hero', number: '01', label: 'Me', code: 'ME' },
   { id: 'experience', number: '02', label: 'Experience', code: 'EXP' },
-  { id: 'projects', number: '03', label: 'Projects', code: 'PRJ' },
-  { id: 'open-source', number: '04', label: 'Open Source', code: 'OSS' },
-  { id: 'github-activity', number: '05', label: 'Activity', code: 'ACT' },
-  { id: 'skills', number: '06', label: 'Skills', code: 'SKL' },
+  { id: 'github-activity', number: '03', label: 'Activity', code: 'ACT' },
+  { id: 'skills', number: '04', label: 'Skills', code: 'SKL' },
+  { id: 'projects', number: '05', label: 'Projects', code: 'PRJ' },
+  { id: 'open-source', number: '06', label: 'Open Source', code: 'OSS' },
   { id: 'setup', number: '07', label: 'Setup', code: 'SET' },
   { id: 'music', number: '08', label: 'Music', code: 'MSC' },
 ];
