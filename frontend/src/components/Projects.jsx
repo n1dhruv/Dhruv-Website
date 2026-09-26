@@ -60,15 +60,15 @@ const Projects = ({ limit = null, showViewAll = false, showSearch = true, showFi
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.45 }}
-        className="flex items-center gap-3 mb-5"
+        className="mobile-gutter flex items-center gap-3 mb-5"
       >
-        <span className="section-label">03 /</span>
+        <span className="section-label">05 /</span>
         <h2 className="section-title">Projects</h2>
       </motion.div>
 
       {/* Search + filter bar */}
       {(showSearch || showFilters) && (
-        <div className="flex flex-col gap-3 mb-6">
+        <div className="mobile-gutter flex flex-col gap-3 mb-6">
           {showSearch && (
             <div className="relative">
               <input

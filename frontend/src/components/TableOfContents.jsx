@@ -115,7 +115,7 @@ const TableOfContents = () => {
   return (
     <nav
       aria-label="Camera dial page navigation"
-      className="hidden lg:flex fixed right-6 xl:right-8 top-1/2 -translate-y-1/2 z-40 select-none"
+      className="hidden xl:flex fixed right-6 xl:right-8 top-1/2 -translate-y-1/2 z-40 select-none"
     >
       {/* Camera Dial Container */}
       <div className="relative flex flex-col items-end py-6 px-2 bg-black/40 backdrop-blur-sm border-r border-white/[0.06]">

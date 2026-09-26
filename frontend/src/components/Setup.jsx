@@ -20,7 +20,7 @@ const Setup = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.45 }}
-        className="flex items-center gap-3 mb-5"
+        className="mobile-gutter flex items-center gap-3 mb-5"
       >
         <span className="section-label">07 /</span>
         <h2 className="section-title">Setup</h2>

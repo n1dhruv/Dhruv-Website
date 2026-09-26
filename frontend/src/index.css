@@ -93,7 +93,7 @@
 /* ─── Layout ─────────────────────────────────────────────────────── */
 .site-container {
   width: 100%;
-  max-width: 760px;
+  max-width: 820px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -416,6 +416,18 @@
 
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 640px) {
+  /* True edge-to-edge on phones: container gutter goes to zero … */
+  .site-container {
+    padding: 0;
+  }
+
+  /* … except rows tagged .mobile-gutter (section headings, filter bars),
+     which keep a slim gutter so text never glues to the screen edge. */
+  .mobile-gutter {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
   .banner-wrap {
     height: 160px;
   }
