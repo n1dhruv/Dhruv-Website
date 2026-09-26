@@ -138,7 +138,7 @@ const Skills = () => {
           return (
             <span
               key={skill}
-              className="tag-pill text-[0.72rem] sm:text-[0.75rem] pl-1.5 pr-3 py-1.5 inline-flex items-center gap-2 group/skill hover:border-lilac transition-all duration-200 cursor-default"
+              className="tag-pill text-[0.72rem] sm:text-[0.75rem] pl-1.5 pr-3 py-1.5 inline-flex items-center justify-center gap-2 grow whitespace-nowrap group/skill hover:border-lilac transition-all duration-200 cursor-default"
             >
               {/* Square Logo Box */}
               <span className="w-5 h-5 rounded-[3px] bg-white/[0.04] border border-white/10 flex items-center justify-center shrink-0 text-mist group-hover/skill:text-lilac group-hover/skill:border-lilac/40 group-hover/skill:bg-lilac/[0.08] transition-all duration-200">
