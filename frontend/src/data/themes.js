@@ -83,6 +83,12 @@ export function applyThemeVars(theme) {
   } catch {
     /* private mode — theme still applies for this visit */
   }
+  // Keep the boot id fresh — widgets read it to stay in sync.
+  try {
+    window.__theme = theme.id;
+  } catch {
+    /* non-configurable edge — event detail below still carries the id */
+  }
   // Let mounted widgets (e.g. GitHub heatmap) follow manual switches.
   try {
     window.dispatchEvent(new CustomEvent('themechange', { detail: theme.id }));

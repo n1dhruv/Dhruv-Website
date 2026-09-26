@@ -42,8 +42,9 @@ const GithubActivity = () => {
   const [calColors, setCalColors] = useState(() => getTheme(null).cal);
 
   useEffect(() => {
-    const sync = () => {
-      let id = getBootedThemeId();
+    const sync = (e) => {
+      // Event detail (manual switch) wins, then boot id, then storage.
+      let id = e?.detail ?? getBootedThemeId();
       if (!id) {
         try {
           id = window.sessionStorage.getItem('dhruv-portfolio-theme');
