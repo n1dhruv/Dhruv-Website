@@ -129,7 +129,7 @@ const Projects = ({ limit = null, showViewAll = false, showSearch = true, showFi
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.35, delay: index * 0.04 }}
-                className={`project-card flex flex-col h-full ${isLastOdd ? 'sm:col-span-2' : ''}`}
+                className={`project-card flex flex-col h-full ${isLastOdd ? 'sm:col-span-2' : ''}${limit && index >= 2 ? ' max-sm:hidden' : ''}`}
               >
                 {/* Card header — clickable */}
                 <div
