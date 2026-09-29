@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const Quote = () => {
   return (
-    <section id="quote" className="w-full flex items-center justify-center min-h-[40vh] md:min-h-[50vh]">
+    <section id="quote" className="w-full flex items-center justify-center min-h-[25vh] md:min-h-[30vh] pt-12 pb-6">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}

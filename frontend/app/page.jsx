@@ -9,6 +9,7 @@ import Skills from '../src/components/Skills'
 import Setup from '../src/components/Setup'
 import MusicStatus from '../src/components/MusicStatus'
 import Quote from '../src/components/Quote'
+import PixelCrew from '../src/components/PixelCrew'
 
 export const dynamic = 'force-static'
 
@@ -17,7 +18,7 @@ export default function Home() {
     <>
       <KeyboardNavigation />
       <TableOfContents />
-      <main className="min-h-screen relative pt-0 pb-10">
+      <main className="min-h-screen relative pt-0 pb-0">
         <div className="site-container flex flex-col gap-8 md:gap-12">
           <Hero />
           <TreeTimeline />
@@ -31,6 +32,9 @@ export default function Home() {
         
         {/* Quote section sits outside the tightly packed container to have its own massive spacing */}
         <Quote />
+
+        {/* Pixel anime sprites grounded at the end of the portfolio */}
+        <PixelCrew />
       </main>
     </>
   )

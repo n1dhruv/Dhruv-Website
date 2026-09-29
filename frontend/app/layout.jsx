@@ -101,7 +101,7 @@ export default function RootLayout({ children }) {
   const themeBootScript = `(function(){try{var T=${JSON.stringify(themeBootMap)};var ids=Object.keys(T);var id=ids[Math.floor(Math.random()*ids.length)];var v=T[id];var s=document.documentElement.style;s.setProperty('--lilac',v.lilac);s.setProperty('--navy',v.navy);s.setProperty('--navy-mid',v.navyMid);s.setProperty('--glow',v.glow);window.__theme=id;}catch(e){}})();`;
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
         <JsonLd data={structuredData} />
