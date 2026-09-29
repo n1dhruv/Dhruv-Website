@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FiChevronLeft, FiChevronRight, FiGithub, FiLinkedin, FiMail, FiFileText } from 'react-icons/fi';
+import { FiChevronLeft, FiChevronRight, FiGithub, FiLinkedin, FiMail, FiFileText, FiArrowUpRight } from 'react-icons/fi';
 import { FaXTwitter } from 'react-icons/fa6';
 import { SiPeerlist } from 'react-icons/si';
 import portfolioImage from '../assets/portfolio image.jpeg';
@@ -206,57 +206,60 @@ const Hero = () => {
 
       </motion.div>
 
-      {/* CTA buttons */}
+      {/* Contact & Socials row */}
       <motion.div
-        className="flex flex-wrap gap-3"
+        className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t"
+        style={{ borderColor: 'var(--line)' }}
         initial="hidden"
         animate="visible"
         variants={fadeUp}
         custom={2}
       >
-        <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.sharma122004@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary"
-        >
-          <FiMail size={13} />
-          Let&apos;s Talk
-        </a>
-        <a
-          href="https://drive.google.com/file/d/1QyXY5S2z2nlEMdxQx3cfPyckYTr-ssmP/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-ghost"
-        >
-          <FiFileText size={13} />
-          Resume
-        </a>
-      </motion.div>
-
-      {/* Social chips row */}
-      <motion.div
-        className="flex flex-wrap gap-2 pt-1 border-t"
-        style={{ borderColor: 'var(--line)' }}
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-        custom={3}
-      >
-        <span className="section-label self-center mr-1">Find me</span>
-        {socials.map(({ label, icon: Icon, url }) => (
+        {/* Left: Email and Resume text links with arrow */}
+        <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm font-mono">
           <a
-            key={label}
-            href={url}
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.sharma122004@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="social-chip"
-            aria-label={label}
+            className="group inline-flex items-center gap-1 text-snow/85 hover:text-lilac transition-colors"
           >
-            <Icon size={12} />
-            {label}
+            <span>dhruv.sharma122004@gmail.com</span>
+            <FiArrowUpRight
+              size={13}
+              className="text-mist group-hover:text-lilac transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
           </a>
-        ))}
+          <span className="text-dim select-none">/</span>
+          <a
+            href="https://drive.google.com/file/d/1QyXY5S2z2nlEMdxQx3cfPyckYTr-ssmP/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-1 text-snow/85 hover:text-lilac transition-colors"
+          >
+            <span>resume</span>
+            <FiArrowUpRight
+              size={13}
+              className="text-mist group-hover:text-lilac transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+        </div>
+
+        {/* Right: Social chips row */}
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* <span className="section-label self-center mr-1">Find me</span> */}
+          {socials.map(({ label, icon: Icon, url }) => (
+            <a
+              key={label}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-chip"
+              aria-label={label}
+            >
+              <Icon size={12} />
+            </a>
+          ))}
+        </div>
       </motion.div>
     </div>
   </section>
