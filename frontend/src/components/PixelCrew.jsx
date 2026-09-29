@@ -2,70 +2,72 @@
 
 const CREW = [
   {
-    name: 'Luffy',
-    title: 'Captain',
-    src: '/sprites/luffy-pixel.gif',
-    visibility: 'flex', // Always visible
-  },
-  {
     name: 'Zoro',
     title: 'Swordsman',
     src: '/sprites/zoro.gif',
-    visibility: 'flex', // Always visible
+    visibility: 'flex',
+  },
+  {
+    name: 'Luffy',
+    title: 'Captain',
+    src: '/sprites/luffy.gif',
+    visibility: 'flex',
   },
   {
     name: 'Sanji',
     title: 'Cook',
     src: '/sprites/sanji.gif',
-    visibility: 'flex', // Always visible
+    visibility: 'flex',
   },
   {
     name: 'Shanks',
     title: 'Yonko',
     src: '/sprites/shanks-pixel.gif',
-    visibility: 'flex', // Always visible
+    visibility: 'hidden',
   },
   {
     name: 'Usopp',
     title: 'Sniper',
     src: '/sprites/usopp-pixel.gif',
-    visibility: 'flex', // Always visible
+    visibility: 'hidden',
   },
   {
     name: 'Chopper',
     title: 'Doctor',
     src: '/sprites/chopper-pixel.gif',
-    visibility: 'hidden min-[380px]:flex', // Hidden on <380px
+    visibility: 'hidden',
   },
   {
     name: 'Nami',
     title: 'Navigator',
     src: '/sprites/nami-pixel.gif',
-    visibility: 'hidden min-[480px]:flex', // Hidden on <480px
+    visibility: 'hidden',
   },
   {
     name: 'Nico Robin',
     title: 'Archaeologist',
     src: '/sprites/nicorobin-pixel.gif',
-    visibility: 'hidden sm:flex', // Hidden on <640px
+    visibility: 'hidden',
   },
   {
     name: 'Franky',
     title: 'Shipwright',
     src: '/sprites/franky-pixel.gif',
-    visibility: 'hidden md:flex', // Hidden on <768px (removed first from right)
+    visibility: 'hidden',
   },
 ];
 
 export default function PixelCrew() {
+  const visibleCrew = CREW.filter((char) => char.visibility !== 'hidden');
+
   return (
     <div className="w-full relative z-10 select-none p-0 m-0 leading-none">
-      {/* Grounded sprite row — characters standing directly on the footer divider line */}
-      <div className="w-full max-w-4xl mx-auto px-4 flex items-end justify-center gap-1.5 min-[380px]:gap-2 sm:gap-2.5 md:gap-3.5 -mb-[1px]">
-        {CREW.map((char) => (
+      {/* Grounded sprite row — characters standing directly on the footer divider line, centered horizontally */}
+      <div className="w-full max-w-4xl mx-auto px-4 flex items-end justify-center gap-3 min-[380px]:gap-4 sm:gap-5 md:gap-6 -mb-[1px]">
+        {visibleCrew.map((char) => (
           <div
             key={char.name}
-            className={`group relative flex-col items-center shrink-0 cursor-pointer p-0 m-0 leading-none ${char.visibility}`}
+            className="group relative flex flex-col items-center shrink-0 cursor-pointer p-0 m-0 leading-none"
           >
             {/* Pop-up Name Tag on Hover */}
             <span className="opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none absolute -top-7 px-2 py-0.5 rounded font-mono text-[10px] tracking-wider text-snow bg-black/90 border border-lilac/40 shadow-sm backdrop-blur-sm whitespace-nowrap z-20">
