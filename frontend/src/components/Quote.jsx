@@ -4,15 +4,15 @@ import { motion } from 'framer-motion';
 
 const Quote = () => {
   return (
-    <section id="quote" className="w-full flex items-center justify-center min-h-[25vh] md:min-h-[30vh] pt-12 pb-6">
+    <section id="quote" className="w-full flex items-center justify-center min-h-[30vh] md:min-h-[35vh] py-14 sm:py-16">
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.96 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full max-w-3xl px-6 text-center flex flex-col items-center justify-center gap-6"
+        className="w-full max-w-3xl px-6 text-center flex flex-col items-center justify-center gap-5"
       >
-        <p className="font-display text-snow/90 text-xl lg:text-xl leading-tight lg:leading-snug tracking-tight italic">
+        <p className="font-display text-snow/90 text-xl lg:text-lg leading-relaxed tracking-tight italic">
           "Be loyal to what matters."
         </p>
         <span className="font-mono text-xs lg:text-sm text-lilac uppercase tracking-widest">

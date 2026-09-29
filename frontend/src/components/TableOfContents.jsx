@@ -11,7 +11,6 @@ const sections = [
   { id: 'projects', number: '05', label: 'Projects', code: 'PRJ' },
   { id: 'open-source', number: '06', label: 'Open Source', code: 'OSS' },
   { id: 'setup', number: '07', label: 'Setup', code: 'SET' },
-  { id: 'music', number: '08', label: 'Music', code: 'MSC' },
 ];
 
 const TableOfContents = () => {

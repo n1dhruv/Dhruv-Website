@@ -1,13 +1,15 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FiChevronLeft, FiChevronRight, FiGithub, FiLinkedin, FiMail, FiFileText, FiArrowUpRight } from 'react-icons/fi';
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaXTwitter, FaSpotify } from 'react-icons/fa6';
 import { SiPeerlist } from 'react-icons/si';
 import portfolioImage from '../assets/portfolio image.jpeg';
 import { THEMES, getTheme, getBootedThemeId, pickRandomTheme, applyThemeVars } from '../data/themes';
+import { useLastFmTrack } from '../hooks/useLastFmTrack';
 
 const socials = [
   { label: 'GitHub',    icon: FiGithub,   url: 'https://github.com/n1dhruv' },
@@ -35,6 +37,8 @@ const arrowBtn =
   'absolute top-1/2 -translate-y-1/2 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-black/45 text-mist backdrop-blur-sm transition-all duration-200 hover:border-lilac hover:text-snow focus-visible:opacity-100 focus-visible:outline-none md:opacity-0 md:group-hover:opacity-100';
 
 const Hero = () => {
+  const { track } = useLastFmTrack();
+
   // SSR renders NO banner image (and default theme) so hydration is
   // byte-identical. After mount we pick the booted/random theme and fade
   // the correct banner in. Rendering theme-dependent markup during SSR
@@ -204,6 +208,37 @@ const Hero = () => {
           I&apos;m also an <span className="intro-hl">open-source contributor</span>, currently working on <span className="intro-hl">AI governance tooling</span>, and I like putting time into making AI systems <span className="intro-hl">safer and easier to trust</span>.
         </p>
 
+      </motion.div>
+
+      {/* Spotify Last Played / Now Playing Link */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+        custom={1.5}
+        className="pt-1 pb-1"
+      >
+        <Link
+          href="/music"
+          className="group inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-mist hover:text-snow transition-colors"
+        >
+          <FaSpotify className="text-[#1DB954] text-sm sm:text-base shrink-0 transition-transform duration-200 group-hover:scale-110" />
+          <span className="text-dim">{track?.isPlaying ? 'now playing' : 'last played'}</span>
+          <span className="text-snow/90 group-hover:text-lilac transition-colors underline-offset-4 group-hover:underline truncate max-w-[260px] sm:max-w-md">
+            {track ? (
+              <>
+                {track.name}
+                {track.artist && <span className="text-dim font-normal"> — {track.artist}</span>}
+              </>
+            ) : (
+              <span className="inline-block w-24 h-3 bg-white/10 rounded animate-pulse align-middle" />
+            )}
+          </span>
+          <FiArrowUpRight
+            size={13}
+            className="text-dim group-hover:text-lilac transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
+          />
+        </Link>
       </motion.div>
 
       {/* Contact & Socials row */}

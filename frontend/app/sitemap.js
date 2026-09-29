@@ -18,6 +18,12 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
+      url: `${SITE_URL}/music`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}/llms.txt`,
       lastModified: now,
       changeFrequency: 'weekly',
