@@ -9,6 +9,11 @@ import '../src/index.css'
 const title = 'Dhruv Sharma — AI & Scalable Backend Developer Portfolio'
 const description = 'Dhruv Sharma is an AI and backend developer building scalable web platforms, intelligent systems, and reliable APIs. Explore his projects and experience.'
 
+// Social sharing copy — exact strings used for Open Graph / X cards.
+const socialTitle = 'Dhruv Sharma — AI & Scalable Backend Developer'
+const socialDescription =
+  'Dhruv Sharma is an AI and backend developer building scalable web platforms and intelligent systems.'
+
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title,
@@ -29,17 +34,26 @@ export const metadata = {
   icons: { icon: favicon.src },
   openGraph: {
     type: 'website',
-    url: SITE_URL,
+    url: `${SITE_URL}/`,
     siteName: 'Dhruv Sharma Portfolio',
-    title,
-    description,
+    title: socialTitle,
+    description: socialDescription,
     locale: 'en_US',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: socialTitle,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title,
-    description,
+    title: socialTitle,
+    description: socialDescription,
     creator: '@nocapdhruv',
+    images: ['/og-image.png'],
   },
 }
 
