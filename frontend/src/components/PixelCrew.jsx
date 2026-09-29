@@ -29,24 +29,30 @@ const CREW = [
     name: 'Usopp',
     title: 'Sniper',
     src: '/sprites/usopp-pixel.gif',
-    visibility: 'hidden min-[380px]:flex', // Hidden on <380px
+    visibility: 'flex', // Always visible
   },
   {
     name: 'Chopper',
     title: 'Doctor',
     src: '/sprites/chopper-pixel.gif',
-    visibility: 'hidden min-[480px]:flex', // Hidden on <480px
+    visibility: 'hidden min-[380px]:flex', // Hidden on <380px
   },
   {
     name: 'Nami',
     title: 'Navigator',
     src: '/sprites/nami-pixel.gif',
-    visibility: 'hidden sm:flex', // Hidden on <640px
+    visibility: 'hidden min-[480px]:flex', // Hidden on <480px
   },
   {
     name: 'Nico Robin',
     title: 'Archaeologist',
     src: '/sprites/nicorobin-pixel.gif',
+    visibility: 'hidden sm:flex', // Hidden on <640px
+  },
+  {
+    name: 'Franky',
+    title: 'Shipwright',
+    src: '/sprites/franky-pixel.gif',
     visibility: 'hidden md:flex', // Hidden on <768px (removed first from right)
   },
 ];
@@ -54,8 +60,8 @@ const CREW = [
 export default function PixelCrew() {
   return (
     <div className="w-full relative z-10 select-none p-0 m-0 leading-none">
-      {/* Grounded sprite row — characters standing directly on the bottom edge */}
-      <div className="w-full max-w-4xl mx-auto px-4 flex items-end justify-center gap-1.5 min-[380px]:gap-2 sm:gap-2.5 md:gap-3.5 p-0 m-0">
+      {/* Grounded sprite row — characters standing directly on the footer divider line */}
+      <div className="w-full max-w-4xl mx-auto px-4 flex items-end justify-center gap-1.5 min-[380px]:gap-2 sm:gap-2.5 md:gap-3.5 -mb-[1px]">
         {CREW.map((char) => (
           <div
             key={char.name}
@@ -66,7 +72,7 @@ export default function PixelCrew() {
               {char.name}
             </span>
 
-            {/* Pixel Sprite GIF: sized responsively, grounded to bottom */}
+            {/* Pixel Sprite GIF: sized responsively, grounded to bottom line */}
             <img
               src={char.src}
               alt={char.name}
