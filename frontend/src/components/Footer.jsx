@@ -1,4 +1,5 @@
 import PixelCrew from './PixelCrew';
+import PageViews from './PageViews';
 
 const Footer = () => {
   return (
@@ -16,6 +17,7 @@ const Footer = () => {
             made by <span className="text-snow font-medium">dhruv</span> and{' '}
             <span className="text-lilac font-medium">antigravity</span>
           </p>
+          <PageViews />
           {/* SpriteFusion "destroy this website" badge */}
           <a
             href="https://destroy.spritefusion.com/?from=badge"
